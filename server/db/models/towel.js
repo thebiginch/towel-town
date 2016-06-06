@@ -7,15 +7,15 @@ module.exports = function(db) {
     db.define('towel', {
         type: {
             type: Sequelize.ENUM('Beach', 'Bath', 'Face', 'Washcloth', 'Golf', 'Gym', 'Dish', 'Hot Towel', 'Bar'),
-            allowNull: false,
+            allowNull: false
         },
         material: {
             type: Sequelize.ENUM('MicroFibre', 'MacroFibre', 'Egyptian Cotton', 'Terry Cloth', 'Bamboo', 'Linen', 'Silk', 'Pima Cotton', 'Baby Alpaca'),
-            allowNull: false,
+            allowNull: false
         },
         color: {
             type: Sequelize.ENUM('Fushia', 'Seaspray Green', 'Coral', 'Eggshell White', 'Yolk Yellow', 'Purple Rain', 'Burgandy (Ron)'),
-            allowNull: false,
+            allowNull: false
         },
         description: {
             type: Sequelize.TEXT
@@ -29,22 +29,22 @@ module.exports = function(db) {
         },
         price: {
         	type: Sequelize.FLOAT(2),
-        	allowNull: false,
+        	allowNull: false
         },
         stock: {
         	type: Sequelize.INTEGER,
-        	default: 0,
+        	default: 0
         },
         threadcount: {
-        	type: Sequelize.INTEGER,
+        	type: Sequelize.INTEGER
         },
         towelTech: {
         	//Additional advanced features
         	//Frakentowel (sewn together various towels)
-        	type: Sequelize.Array(Sequelize.STRING),
+        	type: Sequelize.Array(Sequelize.STRING)
         },
         softness: {
-        	type: Sequelize.STRING,
+        	type: Sequelize.STRING
         }
     }, {
         getterMethods: {
@@ -58,14 +58,14 @@ module.exports = function(db) {
                     'Gym': [16, 27],
                     'Dish': [16, 26],
                     'Hot Towel': [13, 13],
-                    'Bar': [14, 18],
+                    'Bar': [14, 18]
                 }[this.type];
-            },
+            }
         },
         instanceMethods: {
             getWetness: function() {
                 return 1 / this.absorption;
-            },
-        },
+            }
+        }
     });
 };
