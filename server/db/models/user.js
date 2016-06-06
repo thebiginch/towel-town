@@ -12,6 +12,10 @@ module.exports = function (db) {
         password: {
             type: Sequelize.STRING
         },
+        isAdmin: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
         salt: {
             type: Sequelize.STRING
         },
