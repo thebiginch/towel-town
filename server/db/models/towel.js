@@ -65,7 +65,7 @@ module.exports = function(db) {
         instanceMethods: {
             getWetness: function() {
                 return 1 / this.absorption;
-            }
+            },
         },
     });
 };
