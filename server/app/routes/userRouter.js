@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 	.catch(next);
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:userId', function(req, res, next) {
 	res.json(req.user);
 });
 
@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
 	.catch(next);
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:userId', function(req, res, next) {
 	req.user.update(req.body)
 	.then(function(updatedUser) {
 		res.json(updatedUser);
@@ -44,7 +44,7 @@ router.put('/:id', function(req, res, next) {
 	.catch(next);
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:userId', function(req, res, next) {
 	req.user.destroy()
 	.then(function() {
 		// res.redirect(homepage?)?
