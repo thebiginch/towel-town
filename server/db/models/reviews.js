@@ -5,7 +5,7 @@ var Sequelize = require('sequelize');
 module.exports = function (db) {
   db.define('review', {
     headline: {
-      type: Sequelize.String(140),
+      type: Sequelize.STRING(140),
       allowNull: false
     },
     date: {

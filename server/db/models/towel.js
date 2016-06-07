@@ -41,7 +41,7 @@ module.exports = function(db) {
         towelTech: {
         	//Additional advanced features
         	//Frakentowel (sewn together various towels)
-        	type: Sequelize.Array(Sequelize.STRING)
+        	type: Sequelize.ARRAY(Sequelize.STRING)
         },
         softness: {
         	type: Sequelize.STRING
