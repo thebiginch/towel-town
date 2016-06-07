@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 	.catch(next);
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:towelId', function(req, res, next) {
 	res.json(req.towel);
 });
 
