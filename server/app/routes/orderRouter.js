@@ -6,7 +6,7 @@ var db = require('../../../db/index');
 var Order = db.model('order');
 
 router.get('/', function (req, res, next) {
-  Order.findAll()
+  Order.findAll({})
   .then(function (foundOrders) {
     res.json(foundOrders);
   })
