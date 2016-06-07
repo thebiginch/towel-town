@@ -31,15 +31,12 @@ router.get('/:userId', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 	User.findOrCreate({
-		where: {
-			email: req.body.email
-		}
+		where: { email: req.body.email },
+		defaults: { password: req.body.password }
 	})
-	.spread(function(user, found) {
-		if (found) {
-			res.json({
-				message: 'this user already exists!'
-			})
+	.spread(function(user, created) {
+		if (!created) {
+			res.json('this user already exists!')
 		} else {
 			res.json(user);
 		}
