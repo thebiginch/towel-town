@@ -21,6 +21,8 @@ var chalk = require('chalk');
 var db = require('./server/db');
 var User = db.model('user');
 var Towel = db.model('towel');
+var Order = db.model('order');
+var Review = db.model('review');
 
 var Promise = require('sequelize').Promise;
 
@@ -61,7 +63,6 @@ var seedTowels = function () {
             softness: 'Super soft'
         },
         {
-               
             type: 'Beach',
             material: 'MicroFibre',
             color: 'Coral',
@@ -83,6 +84,12 @@ var seedTowels = function () {
 
 };
 
+var seedOrders = function(){
+    return Order.create({items: [1,2],
+                        orderPrice: 5.99
+                    });
+}
+
 db.sync({ force: true })
     .then(function () {
         return seedUsers();
@@ -91,7 +98,7 @@ db.sync({ force: true })
         return seedTowels();
     })
     .then(function(towels){
-        console.log('wetness',towels[0].getWetness());
+        return seedOrders();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
