@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('../../../db/index');
+var db = require('../../db/index');
 var User = db.model('user');
 
 router.param('/:userId', function(req, res, next, id) {
