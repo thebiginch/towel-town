@@ -5,10 +5,8 @@ var router = express.Router();
 var db = require('../../db/index');
 var User = db.model('user');
 
-router.param('/:userId', function(req, res, next, id) {
-	User.findById({
-		where: {id: id}
-	})
+router.param('userId', function(req, res, next, id) {
+	User.findById(id)
 	.then(function(user) {
 		req.user = user;
 		next();
@@ -17,7 +15,7 @@ router.param('/:userId', function(req, res, next, id) {
 });
 
 router.get('/', function(req, res, next) {
-	User.findAll({})
+	User.findAll()
 	.then(function(users) {
 		res.json(users);
 	})
