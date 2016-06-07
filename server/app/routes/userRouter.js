@@ -15,7 +15,7 @@ router.param('/:userid', function(req, res, next, id) {
 	})
 	.catch(next);
 
-});
+})
 
 router.get('/', function(req, res, next) {
 
