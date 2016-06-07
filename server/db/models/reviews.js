@@ -17,7 +17,7 @@ module.exports = function (db) {
       type: Sequelize.INTEGER,
       validate: {
         max: 10,
-        min: 1
+        min: 0
       },
       allowNull: false
     },
