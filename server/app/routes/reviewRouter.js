@@ -12,7 +12,11 @@ router.get('/users/:userId', function (req, res, next) {
     }
   })
   .then(function (foundReviews) {
-    res.json(foundReviews);
+    if (!foundReviews) {
+      res.sendStatus(404);
+    } else {
+      res.json(foundReviews);
+    }
   })
   .catch(next);
 });
@@ -24,15 +28,19 @@ router.get('/towels/:towelId', function (req, res, next) {
     }
   })
   .then(function (foundReviews) {
-    res.json(foundReviews);
-  })
+    if (!foundReviews) {
+      res.sendStatus(404);
+    } else {
+      res.json(foundReviews);
+    } 
+  }) 
   .catch(next);
 });
 
 router.post('/', function (req, res, next) {
   Review.create(req.body)
   .then(function (createdReview) {
-    res.json(createdReview);
+    res.status(201).json(createdReview);
   })
   .catch(next);
 });
