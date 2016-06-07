@@ -14,8 +14,8 @@ var Towel = db.model('towel');
 User.hasMany(Order, { foreignKey : 'user_id' });
 Order.belongsTo(User);
 Order.hasMany(Towel);
-User.hasMany(Review, { foreignKey : 'user_id'});
-Towel.hasMany(Review,{foreignKey : 'review_id'});
+User.hasMany(Review, { foreignKey : 'user_id' });
+Towel.hasMany(Review, { foreignKey : 'review_id' });
 Review.belongsTo(Towel);
 
 module.exports = db;
