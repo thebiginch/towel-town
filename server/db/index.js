@@ -11,7 +11,7 @@ var Order = db.model('order');
 var Review = db.model('review');
 var Towel = db.model('towel');
 
-User.hasMany(Order, { foreignKey : 'user_id' });
+User.hasMany(Order);
 Order.belongsTo(User);
 Order.hasMany(Towel);
 User.hasMany(Review, { foreignKey : 'user_id'});
