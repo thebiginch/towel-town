@@ -13,4 +13,3 @@ router.use('/towels', require('./towelRouter'));
 router.use(function (req, res) {
     res.status(404).end();
 });
-
