@@ -4,9 +4,12 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../db/index');
 var User = db.model('user');
+var Review = db.model('review');
 
 router.param('userId', function(req, res, next, id) {
-	User.findById(id)
+	User.findById(id, {
+		include: [Review]
+	})
 	.then(function(user) {
 		req.user = user;
 		next();
