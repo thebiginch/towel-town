@@ -6,7 +6,7 @@ var db = require('../../db/index');
 var Towel = db.model('towel');
 
 router.param('/:towelId', function(req, res, next, id) {
-	User.findById({
+        Towel.findById({
 		where: {id: id}
 	})
 	.then(function(towel) {
@@ -17,7 +17,7 @@ router.param('/:towelId', function(req, res, next, id) {
 });
 
 router.get('/', function(req, res, next) {
-	User.findAll({})
+	Towel.findAll({})
 	.then(function(towels) {
 		res.json(towels);
 	})
