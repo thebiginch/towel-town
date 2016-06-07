@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('../../../db/index');
+var db = require('../../db/index');
 var Towel = db.model('towel');
 
 router.param('/:towelId', function(req, res, next, id) {
