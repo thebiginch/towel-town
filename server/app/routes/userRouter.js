@@ -30,9 +30,19 @@ router.get('/:userId', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-	User.create(req.body)
-	.then(function(user) {
-		res.json(user);
+	User.findOrCreate({
+		where: {
+			email: req.body.email
+		}
+	})
+	.spread(function(user, found) {
+		if (found) {
+			res.json({
+				message: 'this user already exists!'
+			})
+		} else {
+			res.json(user);
+		}
 	})
 	.catch(next);
 });
