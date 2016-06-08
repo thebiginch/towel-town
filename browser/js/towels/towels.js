@@ -18,8 +18,8 @@ app.config(function($stateProvider) {
         templateUrl: 'js/towels/all-towels.html',
         controller: 'allTowelController',
         resolve: {
-            allTowels: function($stateParams, TowelFactory) {
-                return TowelFactory.fetchAll($stateParams.towelId);
+            allTowels: function(TowelFactory) {
+                return TowelFactory.fetchAll();
             }
         }
     });
