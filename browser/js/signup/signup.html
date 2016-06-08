@@ -1,0 +1,18 @@
+<form id="login-form" name="signupForm">
+
+    <alert type="danger" ng-show="error">
+        {{ error }}
+    </alert>
+    <div class="form-group" id="signupHeaders">
+        Welcome to TowelTown!
+    </div>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input ng-model="newUser.email" type="text" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input ng-model="newUser.password" type="password" class="form-control" id="signup-password" placeholder="Password">
+    </div>
+    <button ng-click="signup()" type="submit" class="btn btn-default">Create Account</button>
+</form>

@@ -7,16 +7,10 @@ module.exports = function (db) {
 
     db.define('user', {
         email: {
-            type: Sequelize.STRING,
-            allowNull: false
+            type: Sequelize.STRING
         },
         password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        isAdmin: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
+            type: Sequelize.STRING
         },
         salt: {
             type: Sequelize.STRING

@@ -24,7 +24,7 @@ router.get('/:orderId', function (req, res, next) {
       res.sendStatus(404);
     } else {
       res.json(foundOrder);
-    }
+   }
   })
   .catch(next);
 });

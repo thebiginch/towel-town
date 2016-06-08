@@ -30,6 +30,7 @@ router.get('/:userId', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+	console.log(req.session);
 	User.findOrCreate({
 		where: { email: req.body.email },
 		defaults: { password: req.body.password }
