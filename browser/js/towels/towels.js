@@ -1,15 +1,15 @@
- // app.directive('towel', function() {
-//     return {
-//         restrict: 'E',
-//         scope: {
-//             productId: "="
-//         },
-//         templateUrl: 'js/towels/towel.html',
-//         link: function(scope, element, attr) {
+ app.directive('towel', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            theTowel: "="
+        },
+        templateUrl: 'js/towels/towel.html',
+        link: function(scope, element, attr) {
 
-//         },
-//     };
-// });
+        },
+    };
+});
 
 app.config(function($stateProvider) {
 
@@ -27,7 +27,8 @@ app.config(function($stateProvider) {
     $stateProvider.state('towel', {
         //foobar
         url: 'towels/:towelId',
-        templateUrl: 'js/towels/one-towel',
+        template: '<h1>You found the single towel page</h1>',
+        //templateUrl: 'js/towels/one-towel',
         resolve: {
             theTowel: function($stateParams, TowelFactory) {
                 return TowelFactory.fetchOne($stateParams.towelId);
