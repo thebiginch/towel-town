@@ -3,7 +3,7 @@ app.config(function($stateProvider) {
     $stateProvider.state('user', {
         url: '/users/:userId',
         templateUrl: 'js/user/user.html',
-        controller: 'userController',
+        controller: 'UserController',
         resolve: {
             user: function($stateParams, UserFactory) {
                 return UserFactory.fetchOne($stateParams.userId);
@@ -13,6 +13,7 @@ app.config(function($stateProvider) {
 
 });
 
+// THIS IS BROKEN
 app.factory('UserFactory', function($http) {
     
     var UserFactory = {};
@@ -20,7 +21,7 @@ app.factory('UserFactory', function($http) {
     var getData = function(res) { return res.data };
 
     UserFactory.fetchOne = function(id) {
-        return $http.get('/api/user/' + id).then(getData);
+        return $http.get('/api/users/' + id).then(getData);
     }
 
     return UserFactory;
