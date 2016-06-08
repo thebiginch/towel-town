@@ -10,6 +10,8 @@
         </ul>
         <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up!</button>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+        <!-- USER PROFILE BUTTON SHOULD ONLY SHOW UP WHEN LOGGED IN -->
+<!--         <button ng-show="!user" ui-sref="user" class="btn login-button">My Profile</button> -->
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
