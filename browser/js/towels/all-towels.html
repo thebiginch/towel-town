@@ -1,1 +1,25 @@
-<h1>{{towels}}</h1>
+<!-- <h1>{{towels}}</h1> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="towel in towels">
+            <td><img height="50px" width="50px" src="/js/towels/towel_bruh.jpg" value="placeholder"/></td>
+            <td><a href="#">{{ towel.color }} {{ towel.material }} Towel</a></td>
+            <td>{{ towel.price }}</td>
+            <td>***** (<a href="#">50</a>)</td> <!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
