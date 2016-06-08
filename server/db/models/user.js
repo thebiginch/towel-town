@@ -15,8 +15,8 @@ module.exports = function (db) {
             allowNull: false
         },
         isAdmin: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
+-            type: Sequelize.BOOLEAN,
+-            defaultValue: false
         },
         salt: {
             type: Sequelize.STRING
