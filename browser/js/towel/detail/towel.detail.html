@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+		<section id="towel">
+		    <h1> The Towel </h1>
+		    <towel the-towel="towel"></towel>
+		    <button type="button" class="btn btn-primary">Add To Cart</button>
+		    <hr>
+		    <div name='towelReviews' ng-repeat="review in reviews">
+		    	<h1>{{ review.headline }} | {{ review.rating }} Star Rating </h1>
+		    	<h2>Date: {{ review.date }}</h2>
+		    	<div>
+					<p>{{ review.content }}</p>
+				</div>
+				<hr>
+		    </div>
+		</section>
+	</div>
+  </div>
+</div>
