@@ -1,6 +1,6 @@
 app.controller('CartController', function($scope, CartFactory) {
 
-	// Debugging ONLY
+	// DEBUGGING ONLY
 	$scope.showCart = CartFactory.showCart;
 
 	$scope.addToCart = CartFactory.addToCart;
@@ -16,7 +16,7 @@ app.factory('CartFactory', function(localStorageService) {
 
 	var CartFactory = {};
 
-	// Debugging ONLY
+	// DEBUGGING ONLY
 	CartFactory.showCart = function() {
 		console.dir(CartFactory.getCart());
 	}
@@ -66,6 +66,7 @@ app.factory('CartFactory', function(localStorageService) {
 	return CartFactory	
 });
 
+// DEBUGGING ONLY
 app.config(function($stateProvider, localStorageServiceProvider) {
 
 	$stateProvider.state('cart', {
