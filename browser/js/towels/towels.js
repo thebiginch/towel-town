@@ -26,9 +26,10 @@ app.config(function($stateProvider) {
 
     $stateProvider.state('towel', {
         //foobar
-        url: 'towels/:towelId',
-        template: '<h1>You found the single towel page</h1>',
-        //templateUrl: 'js/towels/one-towel',
+        url: '/towels/:towelId',
+        //template: '<h1>You found the single towel page</h1>',
+        templateUrl: 'js/towels/single-towel.html',
+        controller: 'singleTowelController',
         resolve: {
             theTowel: function($stateParams, TowelFactory) {
                 return TowelFactory.fetchOne($stateParams.towelId);
