@@ -17,13 +17,13 @@ app.factory('TowelFactory', function($http) {
     TowelFactory.getReviews = function(id) {
         return $http.get('/api/reviews/towels/' + id)
                     .then(getData);
-    }
+    };
 
     TowelFactory.addReview = function (review, id) {
-        var review = {headline: review.headline, content: review.content, towelId: id, rating: 10};
+        var review = {headline: review.headline, content: review.content, towelId: id, rating: review.rating};
         return $http.post('/api/reviews/', review)
         .then(getData);
-    }
+    };
 
     return TowelFactory;
 })
