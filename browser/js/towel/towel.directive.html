@@ -1,3 +1,16 @@
+<!-- <div>
+    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
+
+    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
+
+  <p>{{ theTowel.price }}</p>
+  <p>***** (<a href="#">50</a>)</p>
+  <br>
+  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel, $apply)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button>
+  <button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel, $apply)">Remove</button>
+</div> -->
+<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
+
 <table class="table">
 	<thead>
 	  <tr>
@@ -18,10 +31,10 @@
 	    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
 	  </td>
 	  <td>{{ theTowel.price | currency }}</td>
-	  <td ng-if="cartState">{{ theTowel.quantity }}</td>
-	  <td>{{ theTowel.price * theTowel.quantity | currency }}</td>
+	  <td ng-if="cartState" quantity="myItems">{{ theTowel.quantity }}</td>
+	  <td quantity="myItems">{{ theTowel.price * theTowel.quantity | currency }}</td>
 	  <td ng-if="!cartState">***** (<a href="#">50</a>)</td>
-	  <td><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel, $apply)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button><span> </span><button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel, $apply)">Remove</button></td>
+	  <td><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button><span> </span><button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel)">Remove</button></td>
 	</tr>
 </table>
 <!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->

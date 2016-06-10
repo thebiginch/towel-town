@@ -1,7 +1,9 @@
 <h1>My shopping cart</h1>
-<table>
-	<towel my-items='myItems'></towel>
-</table>
+<!-- WHEN NOT USING TABLES
+<div ng-repeat="towel in myItems">
+	<towel the-towel="towel"></towel>
+</div> -->
+<towel my-items="myItems"></towel>
 <pre>{{ myItems }}</pre>
 <!-- DEBUGGING ONLY -->
 <div ng-click="showCart()">Show Cart!</div>

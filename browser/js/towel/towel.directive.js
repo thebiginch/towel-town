@@ -1,4 +1,4 @@
-app.directive('towel',function(CartFactory, $state) {
+app.directive('towel',function(CartFactory, $state, localStorageService) {
     return {
         restrict: 'E',
         scope: {

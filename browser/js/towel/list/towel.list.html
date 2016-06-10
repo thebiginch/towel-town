@@ -1,19 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <towel the-towel="towel" ng-repeat='towel in towels'> </towel>
-        </tbody>
-      </table>
+    <div class="col-md-2">
+      <sidebar><input type="text" ng-model='searchtype' placeholder="You're a towel"></input>
+        <ul>
+          <li>Bath</li>
+          <li>Beach</li>
+          <li>Gym</li>
+          <li>Taco</li>
+        </ul>
+        
+      </sidebar>
+    </div>
+    <h2>{{searchtype}}</h2>
+    <div class="col-md-10">
+      <div ng-repeat='towel in towels | filter: {description:searchtype}'>
+        <towel the-towel="towel"> </towel>
+        {{towel.description}}
+        <hr>
+      </div>
     </div>
   </div>
 </div>

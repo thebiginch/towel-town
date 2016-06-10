@@ -1,13 +1,18 @@
-app.factory('CartFactory', function(localStorageService) {
+app.factory('CartFactory', function(localStorageService, $state) {
 
 	var CartFactory = {};
 
 	// DEBUGGING ONLY
+
+	function refresh() {
+		$state.go($state.current, {}, {reload: true});
+	}
+
 	CartFactory.showCart = function() {
 		console.dir(CartFactory.getCart());
 	}
 
-	CartFactory.addToCart = function(towel, func) {
+	CartFactory.addToCart = function(towel) {
 		var cart = CartFactory.getCart() || {};
 		var item = cart[towel.id];
 
@@ -18,12 +23,12 @@ app.factory('CartFactory', function(localStorageService) {
 			item.quantity = 1;
 		}
 		cart[towel.id] = item;
-		func();
 
-		return localStorageService.set('cart', cart);
+		localStorageService.set('cart', cart);
+		refresh();
 	};
 
-	CartFactory.removeItem = function(towel, func) {
+	CartFactory.removeItem = function(towel) {
 		var cart = CartFactory.getCart() || {};
 
 		if (cart[towel.id].quantity === 1) {
@@ -31,13 +36,13 @@ app.factory('CartFactory', function(localStorageService) {
 		} else {
 			cart[towel.id].quantity--;
 		}
-		func();
 
 		if (Object.keys(cart).length) {
-			return localStorageService.set('cart', cart);
+			localStorageService.set('cart', cart);
 		} else {
 			return CartFactory.clearCart();
 		}
+		refresh();
 	}
 
 	CartFactory.getCart = function() {
@@ -51,6 +56,12 @@ app.factory('CartFactory', function(localStorageService) {
 	CartFactory.submitOrder = function() {
 		return $http.put('/api/orders')
 		.then()
+	}
+
+	CartFactory.getQuantity = function(towel) {
+		var cart = CartFactory.getCart();
+
+		return cart[towel.id].quantity;
 	}
 
 	return CartFactory;	
