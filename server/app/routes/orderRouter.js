@@ -1,5 +1,7 @@
 'use strict'
 
+// PATH FROM HOME: /api/orders
+
 var express = require('express');
 var router = express.Router();
 var db = require('../../db/index');
@@ -35,6 +37,6 @@ router.post('/', function (req, res, next) {
     res.status(201).json(createdOrder);
   })
   .catch(next);
-}) 
+});
 
 module.exports = router;

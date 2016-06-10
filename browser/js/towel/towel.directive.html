@@ -1,12 +1,27 @@
-<div>
-  <td>
-    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
-  </td>
-  <td>
-    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
-  </td>
-  <td>{{ theTowel.price }}</td>
-  <td>***** (<a href="#">50</a>)</td>
-  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button>
-</div>
+<table class="table">
+	<thead>
+	  <tr>
+	    <th></th>
+	    <th>Name</th>
+	    <th>Price</th>
+	    <th>Quantity</th>
+	    <th>Total Cost</th>
+	    <th ng-if="!cartState">Rating</th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tr ng-repeat="theTowel in myItems">
+	  <td>
+	    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
+	  </td>
+	  <td>
+	    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
+	  </td>
+	  <td>{{ theTowel.price | currency }}</td>
+	  <td ng-if="cartState">{{ theTowel.quantity }}</td>
+	  <td>{{ theTowel.price * theTowel.quantity | currency }}</td>
+	  <td ng-if="!cartState">***** (<a href="#">50</a>)</td>
+	  <td><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel, $evalAsync)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button><span> </span><button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel, $evalAsync)">Remove</button></td>
+	</tr>
+</table>
 <!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
