@@ -1,17 +1,3 @@
-app.controller('CartController', function($scope, CartFactory) {
-
-	// DEBUGGING ONLY
-	$scope.showCart = CartFactory.showCart;
-
-	$scope.addToCart = CartFactory.addToCart;
-	$scope.clearCart = CartFactory.clearCart;
-	$scope.removeItem = CartFactory.removeItem;
-	$scope.getCart = CartFactory.getCart;
-
-	$scope.cart = $scope.getCart();
-
-});
-
 app.factory('CartFactory', function(localStorageService) {
 
 	var CartFactory = {};
@@ -68,38 +54,16 @@ app.config(function($stateProvider){
 		url: '/shoppingCart',
 		templateUrl: '/js/cart/shoppingCart.html',
 		controller: 'myCartController'
-// 		resolve: {
-// 			myItems: function(TowelFactory,CartFactory){
-// 				var cart = CartFactory.getCart();
-// 				var towels = [];
-// 				for(var key in cart){
-// 					towels.push(TowelFactory.fetchOne(key));
-// 				}
-// 				return Promise.all(towels);
-// 			}
-		}
-	})
+	});
 });
 
 app.controller('myCartController',function($scope, CartFactory){
 	$scope.myItems = CartFactory.getCart();
-});
 
+	// DEBUGGING ONLY
+	$scope.showCart = CartFactory.showCart;
 
-
-// DEBUGGING ONLY
-app.config(function($stateProvider) {
-
-	$stateProvider.state('cart', {
-		url: '/cart',
-		template: '<div ng-click="addToCart()">Add to Cart</div><div ng-click="showCart()">Show Cart!</div><div ng-click="clearCart()">Clear Cart!</div><div ng-click="removeItem()">Remove Item!</div>',
-		controller: 'CartController'
-	});
-
-	$stateProvider.state('cart2', {
-		url: '/cart2',
-		template: '<div ng-click="getCookie()">Get Cookie!</div>',
-		controller: 'CartController'
-	});
-
+	$scope.clearCart = CartFactory.clearCart;
+	$scope.removeItem = CartFactory.removeItem;
+	$scope.getCart = CartFactory.getCart;
 });
