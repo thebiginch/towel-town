@@ -6,7 +6,7 @@
     <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
   </td>
   <td>{{ theTowel.price }}</td>
-  <td>***** (<a ui-sref="">50</a>)</td>
-  <button type="button" class="btn btn-primary">Add To Cart</button>
+  <td>***** (<a href="#">50</a>)</td>
+  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button>
 </div>
 <!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->

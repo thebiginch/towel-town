@@ -36,7 +36,6 @@ app.factory('CartFactory', function(localStorageService) {
 		}
 		cart[towel.id] = item;
 		return localStorageService.set('cart', cart);
-
 	};
 
 	CartFactory.removeItem = function(towel) {
@@ -63,8 +62,33 @@ app.factory('CartFactory', function(localStorageService) {
 		return localStorageService.remove('cart');
 	}
 
-	return CartFactory	
+	return CartFactory;	
 });
+
+app.config(function($stateProvider){
+
+	$stateProvider.state('shoppingCart',{
+		url: '/shoppingCart',
+		templateUrl: '/js/cart/shoppingCart.html',
+		controller: 'myCartController',
+		resolve: {
+			myItems: function(TowelFactory,CartFactory){
+				var cart = CartFactory.getCart();
+				var towels = [];
+				for(var key in cart){
+					towels.push(TowelFactory.fetchOne(key));
+				}
+				return Promise.all(towels);
+			}
+		}
+	})
+});
+
+app.controller('myCartController',function($scope,myItems){
+	$scope.myItems = myItems;
+});
+
+
 
 // DEBUGGING ONLY
 app.config(function($stateProvider, localStorageServiceProvider) {
