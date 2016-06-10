@@ -19,6 +19,12 @@ app.factory('TowelFactory', function($http) {
                     .then(getData);
     }
 
+    TowelFactory.addReview = function (review, id) {
+        var review = {headline: review.headline, content: review.content, towelId: id, rating: 10};
+        return $http.post('/api/reviews/', review)
+        .then(getData);
+    }
+
     return TowelFactory;
 })
 
