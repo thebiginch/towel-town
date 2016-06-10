@@ -1,0 +1,9 @@
+<h1>My shopping cart</h1>
+<div ng-repeat="towel in myItems">
+	<towel the-towel='towel'></towel>
+</div>
+<pre>{{ myItems }}</pre>
+<!-- DEBUGGING ONLY -->
+<div ng-click="showCart()">Show Cart!</div>
+<div ng-click="clearCart()">Clear Cart!</div>
+<div ng-click="removeItem()">Remove Item!</div>

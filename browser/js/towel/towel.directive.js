@@ -1,4 +1,4 @@
-app.directive('towel', function() {
+app.directive('towel',function(CartFactory) {
     return {
         restrict: 'E',
         scope: {
@@ -6,6 +6,8 @@ app.directive('towel', function() {
         },
         templateUrl: 'js/towel/towel.directive.html',
         link: function(scope, element, attr) {
+        	scope.addToCart = CartFactory.addToCart;
+        	
         },
     };
 });
