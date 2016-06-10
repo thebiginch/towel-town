@@ -2,5 +2,10 @@ app.controller('singleTowelController', function($scope, TowelFactory, theTowel,
     $scope.towel = theTowel;
     $scope.reviews = reviews;
 
-    $scope.addReview = TowelFactory.addReview
+    $scope.addReview = function (review, id) {
+      TowelFactory.addReview(review, id)
+      .then(function () {
+        $state.go($state.current, {}, {reload: true});
+      });
+    }
 });
