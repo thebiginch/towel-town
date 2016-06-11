@@ -1,12 +1,15 @@
-<div class="container-fluid">
-	<h1 ng-if="!cartEmpty">My shopping cart</h1>
-	<div class="jumbotron" ng-if="cartEmpty">
+<div class="container" ng-if="cartEmpty">
+	<div class="jumbotron">
 	  <h1>Your cart is empty!</h1>
 	  <p>Please navigate to the Towels link above to browse our selection</p>
 	  <p><a class="btn btn-primary btn-lg" ui-sref="allTowels" role="button">Towels</a></p>
 	</div>
-	<div class="row table-responsive">
-		<table class="table table-hover table-condensed" ng-if="!cartEmpty">
+</div>
+<div class="container-fluid">
+	<h1 ng-if="!cartEmpty">My shopping cart</h1>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table table-striped table-hover table-condensed" ng-if="!cartEmpty">
 			<thead>
 			  <tr>
 			    <th></th>
@@ -28,7 +31,7 @@
 			  <td>{{ theTowel.price | currency }}</td>
 			  <td quantity="myItems">{{ theTowel.quantity }}</td>
 			  <td quantity="myItems">{{ theTowel.price * theTowel.quantity | currency }}</td>
-			  <td><button type="button" class="btn btn-primary btn-sm" ng-click="addToCart(theTowel)">Add Quantity</button><span> </span><button type="button" class="btn btn-primary btn-sm" ng-click="removeItem(theTowel)">Remove Quantity</button></td>
+			  <td><button type="button" class="btn btn-success btn-sm" ng-click="addToCart(theTowel)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><!-- Add Quantity --></button><span> </span><button type="button" class="btn btn-danger btn-sm" ng-click="removeItem(theTowel)"><span class="glyphicon glyphicon-minus" aria-hidden="true"><!-- Remove Quantity --></button></td>
 			</tr>
 			<tr class="info">
 				<td></td>
@@ -39,10 +42,12 @@
 			    <td></td>
 			</tbody>
 		</table>
+		</div>
 	</div>
 	<div class="row" ng-if="!cartEmpty">
-		<div class="col-xs-offset-8 col-xs-4 col-sm-offset-9 col-sm-3 col-md-offset-9 col-md-3">
-			<button type="button" class="btn btn-primary btn-md" ng-click="clearCart()">Clear Cart</button>
+		<div class="col-xs-offset-6 col-xs-6 col-sm-offset-8 col-sm-4 col-md-offset-9 col-md-3 col-lg-offset-9 col-lg-3">
+		<!-- NEED TO GET CHECKOUT STATE -->
+			<button type="button" ui-sref="allTowels" class="btn btn-info btn-md"><span>Checkout</span></button> <button type="button" class="btn btn-info btn-md" ng-click="clearCart()"><span>Clear Cart</span></button>
 		</div>
 	</div>
 </div>
