@@ -40,12 +40,18 @@ router.get('/towels/:towelId', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  console.log("REQ.BODY: ", req.body);
-  Review.create(req.body)
-  .then(function (createdReview) {
-    res.status(201).json(createdReview);
-  })
-  .catch(next);
+  if (req.user) {
+    req.body.user_id = req.user.id;
+    Review.create(req.body)
+    .then(function (createdReview) {
+      res.status(201).json(createdReview);
+    })
+    .catch(next);
+  } else {
+    var err = new Error('You must be logged in to post a review');
+    err.status = 401;
+    throw err;
+  }
 });
 
 module.exports = router;

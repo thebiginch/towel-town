@@ -2,6 +2,13 @@
   <div class="form-group">
     Add a Review:
   <div>
+  <alert type="danger" ng-show="reviewError">
+    {{ reviewError }}
+  </alert>
+  <div class="form-group">
+    <label for="headline">Name</label>
+    <input ng-model="review.name" type="text" placeholder="Enter Display Name">
+  </div>
   <div class="form-group">
     <label for="headline">Title</label>
     <input ng-model="review.headline" type="text" placeholder="Enter Title">
