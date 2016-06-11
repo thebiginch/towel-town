@@ -1,11 +1,15 @@
-app.controller('myCartController',function($scope, $state, CartFactory){
+app.controller('myCartController',function($scope, CartFactory){
+	// Scope Variables
 	$scope.myItems = CartFactory.getCart();
+	$scope.totalQuant = CartFactory.totalQuant;
+	$scope.totalCost = CartFactory.totalCost;
 
-	// DEBUGGING ONLY
-	$scope.showCart = CartFactory.showCart;
+	// Scope Determinant Variables
+	$scope.cartEmpty = $scope.totalQuant === 0;
 
-	$scope.getQuantity = CartFactory.getQuantity;
-	$scope.clearCart = CartFactory.clearCart;
-	$scope.removeItem = CartFactory.removeItem;
+	// Scope Functions
 	$scope.getCart = CartFactory.getCart;
+	$scope.addToCart = CartFactory.addToCart;
+	$scope.removeItem = CartFactory.removeItem;
+	$scope.clearCart = CartFactory.clearCart;
 });

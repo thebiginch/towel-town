@@ -1,11 +1,48 @@
-<h1>My shopping cart</h1>
-<!-- WHEN NOT USING TABLES
-<div ng-repeat="towel in myItems">
-	<towel the-towel="towel"></towel>
-</div> -->
-<towel my-items="myItems"></towel>
-<pre>{{ myItems }}</pre>
-<!-- DEBUGGING ONLY -->
-<div ng-click="showCart()">Show Cart!</div>
-<div ng-click="clearCart()">Clear Cart!</div>
-<div ng-click="removeItem()">Remove Item!</div>
+<div class="container-fluid">
+	<h1 ng-if="!cartEmpty">My shopping cart</h1>
+	<div class="jumbotron" ng-if="cartEmpty">
+	  <h1>Your cart is empty!</h1>
+	  <p>Please navigate to the Towels link above to browse our selection</p>
+	  <p><a class="btn btn-primary btn-lg" ui-sref="allTowels" role="button">Towels</a></p>
+	</div>
+	<div class="row table-responsive">
+		<table class="table table-hover table-condensed" ng-if="!cartEmpty">
+			<thead>
+			  <tr>
+			    <th></th>
+			    <th>Name</th>
+			    <th>Price</th>
+			    <th>Quantity</th>
+			    <th>Total Cost</th>
+			    <th></th>
+			  </tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="theTowel in myItems">
+			  <td>
+			    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
+			  </td>
+			  <td>
+			    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
+			  </td>
+			  <td>{{ theTowel.price | currency }}</td>
+			  <td quantity="myItems">{{ theTowel.quantity }}</td>
+			  <td quantity="myItems">{{ theTowel.price * theTowel.quantity | currency }}</td>
+			  <td><button type="button" class="btn btn-primary btn-sm" ng-click="addToCart(theTowel)">Add Quantity</button><span> </span><button type="button" class="btn btn-primary btn-sm" ng-click="removeItem(theTowel)">Remove Quantity</button></td>
+			</tr>
+			<tr class="info">
+				<td></td>
+			    <td><strong>Total</strong></td>
+			    <td></td>
+			    <td><strong>{{ totalQuant }}</strong></td>
+			    <td><strong>{{ totalCost | currency }}</strong></td>
+			    <td></td>
+			</tbody>
+		</table>
+	</div>
+	<div class="row" ng-if="!cartEmpty">
+		<div class="col-xs-offset-8 col-xs-4 col-sm-offset-9 col-sm-3 col-md-offset-9 col-md-3">
+			<button type="button" class="btn btn-primary btn-md" ng-click="clearCart()">Clear Cart</button>
+		</div>
+	</div>
+</div>

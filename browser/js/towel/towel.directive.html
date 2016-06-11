@@ -1,3 +1,12 @@
+	<img src="/js/towel/towel_bruh.jpg" alt="Placeholder">
+	<div class="caption">
+		<h4><a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a></h4>
+		<p>{{ theTowel.description }}</p>
+		<p><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button></p>
+	</div>
+
+<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
+
 <!-- <div>
     <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
 
@@ -6,35 +15,5 @@
   <p>{{ theTowel.price }}</p>
   <p>***** (<a href="#">50</a>)</p>
   <br>
-  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel, $apply)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button>
-  <button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel, $apply)">Remove</button>
+  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button>
 </div> -->
-<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
-
-<table class="table">
-	<thead>
-	  <tr>
-	    <th></th>
-	    <th>Name</th>
-	    <th>Price</th>
-	    <th>Quantity</th>
-	    <th>Total Cost</th>
-	    <th ng-if="!cartState">Rating</th>
-	    <th></th>
-	  </tr>
-	</thead>
-	<tr ng-repeat="theTowel in myItems">
-	  <td>
-	    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
-	  </td>
-	  <td>
-	    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
-	  </td>
-	  <td>{{ theTowel.price | currency }}</td>
-	  <td ng-if="cartState" quantity="myItems">{{ theTowel.quantity }}</td>
-	  <td quantity="myItems">{{ theTowel.price * theTowel.quantity | currency }}</td>
-	  <td ng-if="!cartState">***** (<a href="#">50</a>)</td>
-	  <td><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">{{ cartState ? 'Add Item' : 'Add To Cart' }}</button><span> </span><button ng-if="cartState" type="button" class="btn btn-primary" ng-click="removeItem(theTowel)">Remove</button></td>
-	</tr>
-</table>
-<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->

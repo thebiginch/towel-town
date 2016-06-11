@@ -1,15 +1,29 @@
-app.factory('CartFactory', function(localStorageService, $state) {
+app.factory('CartFactory', function(localStorageService, $state, $http) {
 
 	var CartFactory = {};
 
-	// DEBUGGING ONLY
+	CartFactory.totalQuant = getTotal('quantity');
+	CartFactory.totalCost = getTotal('quantity', 'price');
 
 	function refresh() {
 		$state.go($state.current, {}, {reload: true});
 	}
 
-	CartFactory.showCart = function() {
-		console.dir(CartFactory.getCart());
+	function getTotal() {
+		var cart = localStorageService.get('cart');
+		var args = [].slice.call(arguments);
+		var sum = 0;
+
+		for (var key in cart) {
+			var thisKey = cart[key];
+			var thisVal = args.length > 1 ? args.reduce(function(p,c) {
+				var a = p ? thisKey[p] : 1;
+				var b = c ? thisKey[c] : 1;
+				return a * b;
+			}) : thisKey[args[0]];
+			sum += thisVal;
+		}
+		return sum;
 	}
 
 	CartFactory.addToCart = function(towel) {
@@ -25,6 +39,8 @@ app.factory('CartFactory', function(localStorageService, $state) {
 		cart[towel.id] = item;
 
 		localStorageService.set('cart', cart);
+		CartFactory.totalQuant++;
+		CartFactory.totalCost += towel.price;
 		refresh();
 	};
 
@@ -42,6 +58,8 @@ app.factory('CartFactory', function(localStorageService, $state) {
 		} else {
 			return CartFactory.clearCart();
 		}
+		CartFactory.totalQuant--;
+		CartFactory.totalCost -= towel.price;
 		refresh();
 	}
 
@@ -50,12 +68,20 @@ app.factory('CartFactory', function(localStorageService, $state) {
 	}
 
 	CartFactory.clearCart = function() {
-		return localStorageService.remove('cart');
+		localStorageService.remove('cart');
+		CartFactory.totalQuant = 0;
+		refresh();
 	}
 
-	CartFactory.submitOrder = function() {
-		return $http.put('/api/orders')
-		.then()
+	CartFactory.submitOrder = function(cartOrder) {
+		return $http.post('/api/orders', cartOrder)
+		.then(function(order) {
+
+			// DEBUGGING ONLY
+			console.log(order);
+
+			// $state.go('home');
+		});
 	}
 
 	CartFactory.getQuantity = function(towel) {
