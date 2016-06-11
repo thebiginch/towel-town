@@ -50,7 +50,6 @@ router.post('/', function (req, res, next) {
   } else {
     var err = new Error('You must be logged in to post a review');
     err.status = 401;
-    // next(err);
     throw err;
   }
 });
