@@ -1,9 +1,53 @@
-<h1>My shopping cart</h1>
-<div ng-repeat="towel in myItems">
-	<towel the-towel='towel'></towel>
+<div class="container" ng-if="cartEmpty">
+	<div class="jumbotron">
+	  <h1>Your cart is empty!</h1>
+	  <p>Please navigate to the Towels link above to browse our selection</p>
+	  <p><a class="btn btn-primary btn-lg" ui-sref="allTowels" role="button">Towels</a></p>
+	</div>
 </div>
-<pre>{{ myItems }}</pre>
-<!-- DEBUGGING ONLY -->
-<div ng-click="showCart()">Show Cart!</div>
-<div ng-click="clearCart()">Clear Cart!</div>
-<div ng-click="removeItem()">Remove Item!</div>
+<div class="container-fluid">
+	<h1 ng-if="!cartEmpty">My shopping cart</h1>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table table-striped table-hover table-condensed" ng-if="!cartEmpty">
+			<thead>
+			  <tr>
+			    <th></th>
+			    <th>Name</th>
+			    <th>Price</th>
+			    <th>Quantity</th>
+			    <th>Total Cost</th>
+			    <th></th>
+			  </tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="theTowel in myItems">
+			  <td>
+			    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
+			  </td>
+			  <td>
+			    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
+			  </td>
+			  <td>{{ theTowel.price | currency }}</td>
+			  <td quantity="myItems">{{ theTowel.quantity }}</td>
+			  <td quantity="myItems">{{ theTowel.price * theTowel.quantity | currency }}</td>
+			  <td><button type="button" class="btn btn-success btn-sm" ng-click="addToCart(theTowel)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><!-- Add Quantity --></button><span> </span><button type="button" class="btn btn-danger btn-sm" ng-click="removeItem(theTowel)"><span class="glyphicon glyphicon-minus" aria-hidden="true"><!-- Remove Quantity --></button></td>
+			</tr>
+			<tr class="info">
+				<td></td>
+			    <td><strong>Total</strong></td>
+			    <td></td>
+			    <td><strong>{{ totalQuant }}</strong></td>
+			    <td><strong>{{ totalCost | currency }}</strong></td>
+			    <td></td>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	<div class="row" ng-if="!cartEmpty">
+		<div class="col-xs-offset-6 col-xs-6 col-sm-offset-8 col-sm-4 col-md-offset-9 col-md-3 col-lg-offset-9 col-lg-3">
+		<!-- NEED TO GET CHECKOUT STATE -->
+			<button type="button" ui-sref="allTowels" class="btn btn-info btn-md"><span>Checkout</span></button> <button type="button" class="btn btn-info btn-md" ng-click="clearCart()"><span>Clear Cart</span></button>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,7 @@
 'use strict'
 
+// PATH FROM HOME: /api/reviews
+
 var express = require('express');
 var router = express.Router();
 var db = require('../../db/index');

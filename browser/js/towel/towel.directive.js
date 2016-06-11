@@ -1,4 +1,4 @@
-app.directive('towel',function(CartFactory) {
+app.directive('towel',function(CartFactory, $state, localStorageService) {
     return {
         restrict: 'E',
         scope: {
@@ -7,7 +7,7 @@ app.directive('towel',function(CartFactory) {
         templateUrl: 'js/towel/towel.directive.html',
         link: function(scope, element, attr) {
         	scope.addToCart = CartFactory.addToCart;
-        	
+            scope.removeItem = CartFactory.removeItem;
         },
     };
 });

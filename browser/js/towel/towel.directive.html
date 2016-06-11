@@ -1,4 +1,13 @@
-<div>
+	<img src="/js/towel/towel_bruh.jpg" alt="Placeholder">
+	<div class="caption">
+		<h4><a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a></h4>
+		<p>{{ theTowel.description }}</p>
+		<p><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button></p>
+	</div>
+
+<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
+
+<!-- <div>
     <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
 
     <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
@@ -7,5 +16,4 @@
   <p>***** (<a href="#">50</a>)</p>
   <br>
   <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button>
-</div>
-<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
+</div> -->

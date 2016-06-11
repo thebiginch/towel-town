@@ -1,23 +1,31 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
-      <sidebar><input type="text" ng-model='searchtype' placeholder="You're a towel"></input>
-        <ul>
-          <li>Bath</li>
-          <li>Beach</li>
-          <li>Gym</li>
-          <li>Taco</li>
-        </ul>
-        
-      </sidebar>
+    <div class="col-xs-6 col-sm-3">
+      <div class="input-group input-group-md">
+        <span class="input-group-addon" id="searchtype"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        <input type="text" class="form-control" placeholder="You're a towel" ng-model="searchtype" aria-describedby="searchtype">
+      </div>
+      <ul class="list-group">
+        <br>
+        <li class="list-group-item">Bath</li>
+        <li class="list-group-item">Beach</li>
+        <li class="list-group-item">Gym</li>
+        <li class="list-group-item">Taco</li>
+      </ul>
     </div>
-    <h2>{{searchtype}}</h2>
-    <div class="col-md-10">
-      <div ng-repeat='towel in towels | filter: {description:searchtype}'>
+    <div class="col-xs-6 col-sm-9">
+      <div class="col-xs-12 col-sm-4" ng-repeat="towel in towels | filter: { description: searchtype }">
+        <towel the-towel="towel" class="thumbnail"></towel>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+    <!-- <div class="col-xs-6 col-sm-3">
+      <div ng-repeat="towel in towels | filter: {description:searchtype}">
         <towel the-towel="towel"> </towel>
         {{towel.description}}
         <hr>
       </div>
-    </div>
-  </div>
-</div>
+    </div> -->

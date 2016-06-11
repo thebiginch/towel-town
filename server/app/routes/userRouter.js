@@ -1,14 +1,17 @@
 'use strict'
 
+// PATH FROM HOME: /api/users
+
 var express = require('express');
 var router = express.Router();
 var db = require('../../db/index');
 var User = db.model('user');
 var Review = db.model('review');
+var Order = db.model('order');
 
 router.param('userId', function(req, res, next, id) {
 	User.findById(id, {
-		include: [Review]
+		include: [Review, Order]
 	})
 	.then(function(user) {
 		req.user = user;
