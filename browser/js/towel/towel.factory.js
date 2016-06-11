@@ -25,6 +25,16 @@ app.factory('TowelFactory', function($http) {
         .then(getData);
     };
 
+    TowelFactory.getProps = function(towel) {
+        var props = Object.keys(towel);
+        var res = props.filter(function(key) {
+            var invalid = ['id', 'name', 'stock', 'image', 'description', 'name', 'reviews', 'orderId', 'createdAt', 'updatedAt', 'price'];
+            console.log(key, ' ', invalid.indexOf(key) === -1);
+            return invalid.indexOf(key) === -1;
+        });
+        return res;
+    }
+
     return TowelFactory;
 })
 

@@ -60,6 +60,9 @@ module.exports = function(db) {
                     'Hot Towel': [13, 13],
                     'Bar': [14, 18]
                 }[this.type];
+            },
+            name: function() {
+                return this.color + ' ' + this.material + ' ' + this.type + ' Towel';
             }
         },
         instanceMethods: {

@@ -1,6 +1,10 @@
 app.controller('singleTowelController', function($scope, TowelFactory, theTowel, reviews, $state) {
+	// Model gets on view
     $scope.towel = theTowel;
     $scope.reviews = reviews;
+
+    // Determinant scope variables
+    $scope.props = TowelFactory.getProps(theTowel);
     $scope.reviewError = null;
 
     $scope.addReview = function (review, id) {

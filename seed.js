@@ -52,6 +52,28 @@ var seedTowels = function () {
             threadcount: 1000,
             softness: 'unsoft'
         
+        },
+        {
+            type: 'Dish',
+            material: 'Linen',
+            color: 'Eggshell White',
+            description: 'A great towel!',
+            absorption: 5,
+            price: 4.99,
+            stock: 12,
+            threadcount: 300,
+            softness: 'rough'
+        },
+        {
+            type: 'Golf',
+            material: 'Bamboo',
+            color: 'Yolk Yellow',
+            description: 'A sticky towel...',
+            absorption: 9,
+            price: 2.99,
+            stock: 999,
+            threadcount: 100,
+            softness: 'sticky'
         }
     ];
 
