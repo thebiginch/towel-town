@@ -1,19 +1,23 @@
-	<img src="/js/towel/towel_bruh.jpg" alt="Placeholder">
-	<div class="caption">
-		<h4><a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a></h4>
-		<p>{{ theTowel.description }}</p>
-		<p><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button></p>
+<div class="thumbnail" style="padding: 15px">
+	<div class="row">
+		<div class="caption">
+		<div class="col-md-12 col-lg-6">
+			<a ui-sref="towel({towelId: theTowel.id})"><img src="/js/towel/towel_bruh.jpg" alt="Placeholder"></a>
+		</div>
+		<div class="col-md-12 col-lg-6">
+			<h4><a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a></h4>
+			<h4>{{ theTowel.price | currency }}</h4>
+			<h6>Rating: <span ng-repeat="n in [1,2,3,4,5]" class="glyphicon glyphicon-star"></span></h6>
+		</div>
+		</div>
 	</div>
-
-<!-- {{ towel.rating }} ({{ towel.reviews.length }}) -->
-
-<!-- <div>
-    <img height="100px" width="100px" src="/js/towel/towel_bruh.jpg" value="placeholder" />
-
-    <a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.color }} {{ theTowel.material }} Towel</a>
-
-  <p>{{ theTowel.price }}</p>
-  <p>***** (<a href="#">50</a>)</p>
-  <br>
-  <button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button>
-</div> -->
+	<div class="row">
+		<div class="caption">
+		<div class="col-md-12">
+			<p>{{ theTowel.description }}</p>
+			<p><button type="button" class="btn btn-primary" ng-click="addToCart(theTowel)">Add To Cart</button></p>
+		</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>

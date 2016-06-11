@@ -70,6 +70,7 @@ app.factory('CartFactory', function(localStorageService, $state, $http) {
 	CartFactory.clearCart = function() {
 		localStorageService.remove('cart');
 		CartFactory.totalQuant = 0;
+		CartFactory.totalCost = 0;
 		refresh();
 	}
 
