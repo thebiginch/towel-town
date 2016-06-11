@@ -79,11 +79,12 @@ app.filter('propFormat', function() {
             break;
 
             case 'Array':
-                if (superType(parseInt(input[0]) === 'string')) {
-                    return input.join(', ');
-                } else {
+                if (superType(input[0]) === 'Number') {
                     return input[0].toLocaleString() + ' in. x ' + input[1].toLocaleString() + ' in.';
+                } else {
+                    return input.join(', ');
                 }
+                return superType(input[0]);
             break;
 
             case 'String':
