@@ -1,20 +1,21 @@
-<div class="col-md-12">
-  <div>
-    My Profile:
+<!-- 
+ -->
+
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <ul class="list-group">
+        <br>
+        <li ui-sref="profile.default" class="list-group-item">My profile</li>
+        <li ui-sref="profile.orders({userId: user.id})" class="list-group-item">Orders</li>
+        <li ui-sref="profile.reviews" class="list-group-item">Reviews</li>
+      </ul>
+    </div>
+    <div class="col-xs-6 col-sm-9">
+      <div class="col-xs-12 col-sm-4">
+        <ui-view></ui-view>
+      </div>
+    </div>
   </div>
-  <div>
-    <table>
-      <tr>
-        <td>{{ user.email }}</td>
-      </tr>
-      <tr>
-        <td>{{ user.password }}</td>
-      </tr>
-    </table>
-    <table class="user-orders">
-      <tr>
-        <td>My Orders:</td>
-      </tr>
-    </table>
-  </div>
+  <div class="clearfix"></div>
 </div>

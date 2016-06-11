@@ -19,6 +19,19 @@ router.get('/', function (req, res, next) {
   .catch(next);
 });
 
+router.get('/order/:userId', function (req, res, next) {
+
+  Order.findAll({ where: { userId: req.params.userId }})
+  .then(function (foundOrders) {
+    if (!foundOrders) {
+      res.sendStatus(404);
+    } else {
+      res.json(foundOrders);
+    }
+  })
+  .catch(next);
+});
+
 router.get('/:orderId', function (req, res, next) {
   Order.findById(req.params.orderId)
   .then(function (foundOrder) {
