@@ -20,7 +20,7 @@ module.exports = function (db) {
     rating: {
       type: Sequelize.INTEGER,
       validate: {
-        max: 10,
+        max: 5,
         min: 0
       },
       allowNull: false
