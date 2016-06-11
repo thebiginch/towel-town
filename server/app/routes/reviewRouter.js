@@ -8,9 +8,10 @@ var db = require('../../db/index');
 var Review = db.model('review');
 
 router.get('/users/:userId', function (req, res, next) {
+  
   Review.findAll({
     where: { 
-      user_id : req.params.userid 
+      user_id : req.params.userId 
     }
   })
   .then(function (foundReviews) {

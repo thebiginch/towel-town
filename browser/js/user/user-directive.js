@@ -15,7 +15,7 @@ app.config(function($stateProvider) {
         templateUrl: 'js/user/user-orders.html',
         controller: 'UserOrdersController',
         resolve : {
-            userOrders: function($stateParams, UserFactory,Session) {
+            userOrders: function($stateParams,UserFactory,Session) {
                 return UserFactory.fetchUserOrders(Session.user.id);
             }
         }
@@ -23,7 +23,12 @@ app.config(function($stateProvider) {
     .state('profile.reviews', {
         url: '/reviews',
         templateUrl: 'js/user/user-reviews.html',
-        controller: 'UserController'
+        controller: 'UserReviewsController',
+        resolve : {
+            userReviews: function($stateParams, UserFactory,Session) {
+                return UserFactory.fetchUserReviews(Session.user.id);
+            }
+        }
     });
 
 });
