@@ -1,6 +1,18 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'LocalStorageModule']);
 
+function propCase(str) {
+    var arr = str.split(' ');
+    var res = arr.map(function(elem) {
+        return elem[0].toUpperCase()+elem.substring(1);
+    });
+    return res.join(' ');
+}
+
+function superType(input) {
+    return {}.toString.call(input).split(' ')[1].slice(0,-1);
+}
+
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
@@ -52,4 +64,35 @@ app.run(function ($rootScope, AuthService, $state) {
 
     });
 
+});
+
+app.filter('properCase', function() {
+    return propCase;
+});
+
+app.filter('propFormat', function() {
+    return function(input) {
+        var type = superType(input);
+        switch (type) {
+            case 'Number':
+                return input.toLocaleString();
+            break;
+
+            case 'Array':
+                if (superType(parseInt(input[0]) === 'string')) {
+                    return input.join(', ');
+                } else {
+                    return input[0].toLocaleString() + ' in. x ' + input[1].toLocaleString() + ' in.';
+                }
+            break;
+
+            case 'String':
+                return propCase(input);
+            break;
+
+            default:
+                return type;
+            break;
+        }
+    }
 });
