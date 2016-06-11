@@ -20,7 +20,9 @@ router.param('towelId', function(req, res, next, id) {
 });
 
 router.get('/', function(req, res, next) {
-	Towel.findAll()
+	Towel.findAll({
+		include: [Review]
+	})
 	.then(function(towels) {
 		res.json(towels);
 	})

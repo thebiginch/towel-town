@@ -6,7 +6,23 @@ app.factory('TowelFactory', function($http) {
 
     TowelFactory.fetchAll = function() {
         return $http.get('/api/towels')
-                    .then(getData);
+            .then(getData)
+            .then(function(towels) {
+                var res = towels.map(function(towel) {
+                    if (towel.reviews.length) {
+                        var ratings = towel.reviews.map(function(review) {
+                            return review.rating;
+                        });
+                        var sum = ratings.reduce(function(p,c) {
+                            return p + c;
+                        })
+                        var avgRat = sum / towel.reviews.length;
+                        towel.rating = avgRat;
+                    }
+                    return towel;
+                });
+                return res;
+        });
     };
 
     TowelFactory.fetchOne = function(id) {
