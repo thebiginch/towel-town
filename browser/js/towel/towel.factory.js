@@ -36,5 +36,5 @@ app.factory('TowelFactory', function($http) {
     }
 
     return TowelFactory;
-})
+});
 
