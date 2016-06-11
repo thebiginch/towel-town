@@ -62,7 +62,7 @@ module.exports = function(db) {
                 }[this.type];
             },
             name: function() {
-                return this.color + ' ' + this.material + ' Towel';
+                return this.color + ' ' + this.material + ' ' + this.type + ' Towel';
             }
         },
         instanceMethods: {
