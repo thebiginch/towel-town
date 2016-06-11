@@ -10,8 +10,9 @@
 		    </div>
 		    <hr>
 			    <div name='towelReviews' ng-repeat="review in reviews">
-			    	<h1>{{ review.headline }} | {{ review.rating }} Star Rating </h1>
-			    	<h2>Date: {{ review.date }}</h2>
+			    	<h6>{{ review.name }}</h6>
+			    	<h5>{{ review.headline }} | {{ review.rating }} Star Rating </h5>
+			    	<h6>Date: {{ review.date }}</h6>
 			    	<div>
 						<p>{{ review.content }}</p>
 					</div>

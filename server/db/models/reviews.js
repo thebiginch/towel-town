@@ -4,6 +4,10 @@ var Sequelize = require('sequelize');
 
 module.exports = function (db) {
   db.define('review', {
+    name: {
+      type: Sequelize.STRING(140),
+      allowNull: true
+    },
     headline: {
       type: Sequelize.STRING(140),
       allowNull: false

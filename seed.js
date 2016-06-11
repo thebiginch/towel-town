@@ -26,11 +26,6 @@ var Review = db.model('review');
 
  var Promise = require('sequelize').Promise;
  
- var seedUsers = function () {
-     @@ -47,59 +43,10 @@ var seedUsers = function () {
- 
- };
- 
 var seedTowels = function () {
 
     var towels = [
@@ -75,9 +70,6 @@ var seedOrders = function(){
 }
 
  db.sync({ force: true })
-     .then(function () {
-         return seedUsers();
-     })
     .then(function(){
         return seedTowels();
     })
@@ -87,3 +79,5 @@ var seedOrders = function(){
      .then(function () {
          console.log(chalk.green('Seed successful!'));
          process.kill(0);
+    });
+
