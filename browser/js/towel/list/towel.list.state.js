@@ -6,7 +6,6 @@
         controller: 'allTowelController',
         resolve: {
             allTowels: function(TowelFactory) {
-                console.log(TowelFactory.fetchAll());
                 return TowelFactory.fetchAll();
             }
         }

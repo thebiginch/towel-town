@@ -1,5 +1,5 @@
 app.controller('singleTowelController', function($scope, TowelFactory, theTowel, reviews, $state, Session) {
-	// Model gets on view
+    // Model gets on view
     $scope.towel = theTowel;
     $scope.reviews = reviews;
     $scope.Session = Session;
@@ -7,6 +7,8 @@ app.controller('singleTowelController', function($scope, TowelFactory, theTowel,
     // Determinant scope variables
     $scope.props = TowelFactory.getProps(theTowel);
 
+    // Scope functions
+    $scope.genArr = TowelFactory.genArr;
     $scope.addReview = function (review, id) {
 
       TowelFactory.addReview(review, id)

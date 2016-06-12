@@ -4,30 +4,41 @@ app.factory('TowelFactory', function($http) {
 
     var getData = function(res) {return res.data};
 
+    function getRating(towel) {
+        if (towel.reviews.length) {
+            var ratings = towel.reviews.map(function(review) {
+                return review.rating;
+            });
+            var avgRating = ratings.reduce(function(p,c) {
+                return (p + c) / towel.reviews.length;
+            })
+            towel.rating = avgRating;
+        }
+        return towel;
+    }
+
+    TowelFactory.genArr = function(num) {
+        return new Array(num);
+    }
+
+    TowelFactory.filterProps = function(key, invalid) {
+        var invalid = ['id', 'name', 'stock', 'image', 'description', 'name', 'reviews', 'orderId', 'createdAt', 'updatedAt', 'price'];
+        return invalid.indexOf(key) === -1;
+    }
+
     TowelFactory.fetchAll = function() {
         return $http.get('/api/towels')
             .then(getData)
             .then(function(towels) {
-                var res = towels.map(function(towel) {
-                    if (towel.reviews.length) {
-                        var ratings = towel.reviews.map(function(review) {
-                            return review.rating;
-                        });
-                        var sum = ratings.reduce(function(p,c) {
-                            return p + c;
-                        })
-                        var avgRat = sum / towel.reviews.length;
-                        towel.rating = avgRat;
-                    }
-                    return towel;
-                });
+                var res = towels.map(getRating);
                 return res;
-        });
+            });
     };
 
     TowelFactory.fetchOne = function(id) {
         return $http.get('/api/towels/' + id)
-                    .then(getData);
+                    .then(getData)
+                    .then(getRating);
     };
 
     TowelFactory.getReviews = function(id) {
@@ -44,7 +55,7 @@ app.factory('TowelFactory', function($http) {
     TowelFactory.getProps = function(towel) {
         var props = Object.keys(towel);
         var res = props.filter(function(key) {
-            var invalid = ['id', 'name', 'stock', 'image', 'description', 'name', 'reviews', 'orderId', 'createdAt', 'updatedAt', 'price'];
+            var invalid = ['id', 'name', 'stock', 'image', 'description', 'name', 'reviews', 'orderId', 'createdAt', 'updatedAt', 'price', 'rating'];
             console.log(key, ' ', invalid.indexOf(key) === -1);
             return invalid.indexOf(key) === -1;
         });
