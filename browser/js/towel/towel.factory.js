@@ -9,10 +9,11 @@ app.factory('TowelFactory', function($http) {
             var ratings = towel.reviews.map(function(review) {
                 return review.rating;
             });
-            var avgRating = ratings.reduce(function(p,c) {
-                return (p + c) / towel.reviews.length;
+            var ratingSum = ratings.reduce(function(p,c) {
+                return p + c;
             })
-            towel.rating = avgRating;
+            var avgRating = Math.floor(ratingSum / towel.reviews.length);
+            towel.rating = Math.floor(avgRating);
         }
         return towel;
     }
@@ -56,7 +57,6 @@ app.factory('TowelFactory', function($http) {
         var props = Object.keys(towel);
         var res = props.filter(function(key) {
             var invalid = ['id', 'name', 'stock', 'image', 'description', 'name', 'reviews', 'orderId', 'createdAt', 'updatedAt', 'price', 'rating'];
-            console.log(key, ' ', invalid.indexOf(key) === -1);
             return invalid.indexOf(key) === -1;
         });
         return res;
