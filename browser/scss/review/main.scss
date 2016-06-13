@@ -1,0 +1,38 @@
+#review-form {
+  float: none;  
+  margin: 0 auto;
+  height: 100%;
+  border: medium solid #ccc;
+  background: #eee; 
+}
+
+#review-input {
+  width: 100%;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 2%;
+  text-align: left;
+  padding: 0.4em 0.4em 0.4em 0;
+}
+
+#name {
+  width: 50%;
+  border-radius: 2%;
+  padding: 100px auto;
+}
+
+#title {
+  margin-right: 10px;
+  width: 65%;
+  border-radius: 2%;
+  padding: 100px auto;
+}
+
+#submit-button {
+  margin-left: 2.5%;
+  width: 37.5%;
+}
+
+#add-review-headline {
+  text-align: center;
+}
