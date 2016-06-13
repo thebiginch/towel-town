@@ -7,7 +7,7 @@
         <div ng-show="filteredOptions[category]">
           <li class="list-group-item">
             <div ng-repeat="option in options">
-              <input ng-model="taco[category][option]" value="{{option}}" type="checkbox" />{{option}}
+              <input ng-model="filters[category][option]" value="{{option}}" type="checkbox" />{{option}}
             </div>
           </li>
         </div>
