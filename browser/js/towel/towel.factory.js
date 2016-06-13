@@ -47,7 +47,7 @@ app.factory('TowelFactory', function($http) {
     };
 
     TowelFactory.getReviews = function(id) {
-        return $http.get('/api/reviews/towels/' + id)
+        return $http.get(`/api/towels/${id}/reviews`)
                     .then(getData);
     };
 

@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 
     $stateProvider.state('profile', {
-        url: '/tacos',
+        url: '/user',
         templateUrl: 'js/user/user.html',
         controller: 'UserController',
     })
@@ -11,29 +11,18 @@ app.config(function($stateProvider) {
         controller: 'UserController'
     })
     .state('profile.orders', {
-        url: '/orders/:userId',
+        url: '/orders',
         templateUrl: 'js/user/user-orders.html',
-        controller: 'UserOrdersController',
-        resolve : {
-            userOrders: function($stateParams,UserFactory,Session) {
-                return UserFactory.fetchUserOrders(Session.user.id);
-            }
-        }
+        controller: 'UserController'
     })
     .state('profile.reviews', {
         url: '/reviews',
         templateUrl: 'js/user/user-reviews.html',
-        controller: 'UserReviewsController',
-        resolve : {
-            userReviews: function($stateParams, UserFactory,Session) {
-                return UserFactory.fetchUserReviews(Session.user.id);
-            }
-        }
+        controller: 'UserController',
     });
 
 });
 
-// THIS IS BROKEN??
 app.factory('UserFactory', function($http,Session) {
     
     var UserFactory = {};
@@ -41,17 +30,17 @@ app.factory('UserFactory', function($http,Session) {
     var getData = function(res) { return res.data };
 
     UserFactory.fetchOne = function(id) {
-        return $http.get('/api/users/'+id)
+        return $http.get(`/api/users/${id}`)
         .then(getData);
     };
 
     UserFactory.fetchUserOrders = function(id) {
-        return $http.get('/api/orders/order/' + id)
+        return $http.get(`/api/users/${id}/orders`)
         .then(getData);
     };
 
     UserFactory.fetchUserReviews = function(id) {
-        return $http.get('/api/reviews/users/' + id)
+        return $http.get(`/api/users/${id}/reviews`)
         .then(getData);
     };
 
@@ -59,9 +48,7 @@ app.factory('UserFactory', function($http,Session) {
 });
 
 app.controller('UserController', function($scope, UserFactory,Session) {
-    $scope.user = Session.user;
-}).controller('UserOrdersController', function($scope,userOrders) {
-    $scope.userOrders = userOrders;
-}).controller('UserReviewsController', function($scope,userReviews) {
-    $scope.userReviews = userReviews;
-});
+    UserFactory.fetchOne(Session.user.id).then(function(user){
+        $scope.user = user;
+    })
+})

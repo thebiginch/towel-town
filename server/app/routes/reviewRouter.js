@@ -7,39 +7,6 @@ var router = express.Router();
 var db = require('../../db/index');
 var Review = db.model('review');
 
-router.get('/users/:userId', function (req, res, next) {
-  
-  Review.findAll({
-    where: { 
-      user_id : req.params.userId 
-    }
-  })
-  .then(function (foundReviews) {
-    if (!foundReviews) {
-      res.sendStatus(404);
-    } else {
-      res.json(foundReviews);
-    }
-  })
-  .catch(next);
-});
-
-router.get('/towels/:towelId', function (req, res, next) {
-  Review.findAll({
-    where: {
-      towelId : req.params.towelId
-    }
-  })
-  .then(function (foundReviews) {
-    if (!foundReviews) {
-      res.sendStatus(404);
-    } else {
-      res.json(foundReviews);
-    } 
-  }) 
-  .catch(next);
-});
-
 router.post('/', function (req, res, next) {
   if (req.user) {
     req.body.user_id = req.user.id;
