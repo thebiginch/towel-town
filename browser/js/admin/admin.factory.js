@@ -8,6 +8,10 @@ app.factory('AdminFactory', function ($http) {
   AdminFactory.colors = ['Fushia', 'Seaspray Green', 'Coral', 'Eggshell White', 'Yolk Yellow', 'Purple Rain', 'Burgandy (Ron)'];
 
   AdminFactory.createTowel = function (newTowel) {
+    if (!newTowel.towelTech) {
+      newTowel.towelTech = [];
+    }
+
     var newTowel = {
       type: newTowel.type,
       material: newTowel.material,
