@@ -6,9 +6,8 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var ENABLED_AUTH_STRATEGIES = [
     'local',
-    //'twitter',
-    //'facebook',
-    //'google'
+    'facebook',
+    'google'
 ];
 
 module.exports = function (app, db) {
@@ -62,6 +61,24 @@ module.exports = function (app, db) {
         }
     });
 
+    app.post('/signup', function (req, res, next) {
+        // process info from request and validate then create a user (in db)
+        // "log them in"
+        User.create(req.body)
+            .then(function (user) {
+                req.login(user, function (err) {
+                    if (err) next(err);
+                    else res.json(user);
+                });
+                res.json(user);
+            })
+            .catch(next);
+    });
+
+    app.get('/me', function (req, res, next) {
+        res.json(req.user);
+    });
+
     // Simple /logout route.
     app.get('/logout', function (req, res) {
         req.logout();
@@ -72,5 +89,5 @@ module.exports = function (app, db) {
     ENABLED_AUTH_STRATEGIES.forEach(function (strategyName) {
         require(path.join(__dirname, strategyName))(app, db);
     });
-
+    
 };

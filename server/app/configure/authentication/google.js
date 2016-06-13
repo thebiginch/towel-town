@@ -16,7 +16,7 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
+        
         User.findOne({
                 where: {
                     google_id: profile.id
@@ -27,7 +27,8 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        google_id: profile.id
+                        google_id: profile.id,
+                        email: profile.emails[0].value
                     });
                 }
             })
@@ -38,7 +39,6 @@ module.exports = function (app, db) {
                 console.error('Error creating user from Google authentication', err);
                 done(err);
             });
-
     };
 
     passport.use(new GoogleStrategy(googleCredentials, verifyCallback));

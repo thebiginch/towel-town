@@ -12,7 +12,6 @@ module.exports = function (db) {
         },
         password: {
             type: Sequelize.STRING,
-            allowNull: false
         },
         isAdmin: {
             type: Sequelize.BOOLEAN,
