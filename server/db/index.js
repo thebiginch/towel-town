@@ -13,7 +13,10 @@ var Towel = db.model('towel');
 
 User.hasMany(Order);
 Order.belongsTo(User);
-Order.hasMany(Towel);
+
+Order.belongsToMany(Towel);
+Towel.belongsToMany(Order);
+
 User.hasMany(Review, { foreignKey : 'user_id'});
 Towel.hasMany(Review);
 Review.belongsTo(Towel);
