@@ -13,6 +13,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'My account', state: 'profile', auth: true}
             ];
 
+            scope.isAdmin = false;
             scope.user = null;
 
             scope.isLoggedIn = function () {
@@ -28,6 +29,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
+
+                    if (user.isAdmin === true) scope.isAdmin = true;
                 });
             };
 
