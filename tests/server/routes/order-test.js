@@ -2,6 +2,7 @@
 var expect = require('chai').expect;
 
 var Sequelize = require('sequelize');
+// testing.js in env folder -AAOB
 var dbURI = 'postgres://localhost:5432/testing-fsg';
 var db = new Sequelize(dbURI, {
     logging: false
@@ -33,6 +34,7 @@ describe('Orders Route', function () {
 		});
 
 		beforeEach('Create a order', function (done) {
+			// done() not needed here -AAOB
 			return Order.create({ items: [1, 2, 3] })
 						.then(function(newItem) {
 							done();

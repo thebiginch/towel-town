@@ -19,6 +19,7 @@ router.get('/', function (req, res, next) {
   .catch(next);
 });
 
+// Consider putting this on the user routes -AAOB
 router.get('/order/:userId', function (req, res, next) {
 
   Order.findAll({ where: { userId: req.params.userId }})

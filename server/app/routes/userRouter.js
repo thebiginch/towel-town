@@ -59,6 +59,7 @@ router.put('/:userId', function(req, res, next) {
 router.delete('/:userId', function(req, res, next) {
 	req.user.destroy()
 	.then(function() {
+		// Remove comments! -AAOB
 		// res.redirect(homepage?)?
 		res.sendStatus(204);
 	})

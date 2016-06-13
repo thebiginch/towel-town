@@ -13,7 +13,10 @@ var Towel = db.model('towel');
 
 User.hasMany(Order);
 Order.belongsTo(User);
+// Consider changing this to Order.belongsToMany(Towel) -AAOB
 Order.hasMany(Towel);
+// Reviews should also belong to Users, probably.
+// Associations should always be two-way. -AAOB
 User.hasMany(Review, { foreignKey : 'user_id'});
 Towel.hasMany(Review);
 Review.belongsTo(Towel);

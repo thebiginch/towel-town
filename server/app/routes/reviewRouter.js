@@ -7,6 +7,9 @@ var router = express.Router();
 var db = require('../../db/index');
 var Review = db.model('review');
 
+// Maybe move this into the user router 
+// OR move these routes into other routes
+// and delete the router entirely -AAOB
 router.get('/users/:userId', function (req, res, next) {
   
   Review.findAll({
@@ -24,6 +27,7 @@ router.get('/users/:userId', function (req, res, next) {
   .catch(next);
 });
 
+// Towel router? -AAOB
 router.get('/towels/:towelId', function (req, res, next) {
   Review.findAll({
     where: {

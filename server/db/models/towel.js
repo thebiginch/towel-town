@@ -5,6 +5,7 @@ var Sequelize = require('sequelize');
 module.exports = function(db) {
 
     db.define('towel', {
+        // Think about extra validations throughout this model (price must be greater than zero, etc.) -AAOB
         type: {
             type: Sequelize.ENUM('Beach', 'Bath', 'Face', 'Washcloth', 'Golf', 'Gym', 'Dish', 'Hot Towel', 'Bar'),
             allowNull: false
@@ -21,7 +22,9 @@ module.exports = function(db) {
             type: Sequelize.TEXT
         },
         image: {
+            // Maybe use a URL validator here -AAOB
             type: Sequelize.STRING
+            // In general, try to avoid having TODO comments, console.logs, etc. in master -AAOB
                 //maybe need a getter method for each towel depending on size and color??
         },
         absorption: {
@@ -49,6 +52,8 @@ module.exports = function(db) {
     }, {
         getterMethods: {
             dimensions: function() {
+                // This lookup won't work without putting parentheses
+                // around the object literal -AAOB
                 return {
                     'Beach': [40, 70],
                     'Bath': [30, 56],
@@ -62,10 +67,13 @@ module.exports = function(db) {
                 }[this.type];
             },
             name: function() {
+                // This could be a great use case for a template string - fun ES6-ness -AAOB
+                // i.e. `${this.color} ${this.material} ${this.type} Towel`
                 return this.color + ' ' + this.material + ' ' + this.type + ' Towel';
             }
         },
         instanceMethods: {
+            // Couldn't this also be a getterMethod? -AAOB
             getWetness: function() {
                 return 1 / this.absorption;
             }
