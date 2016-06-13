@@ -8,13 +8,13 @@ app.controller('allTowelController', function($scope, TowelFactory, allTowels) {
     };
 
     $scope.filtered = function(){
-        if (Object.keys($scope.taco).length == 0) return this.towels;
+        if (Object.keys($scope.filters).length == 0) return this.towels;
 
         var x = this.towels.filter(function(towel){
             var match = false;
-            for(var cat in $scope.taco){
-                for(var opt in $scope.taco[cat]){
-                    if (towel[cat] == opt && $scope.taco[cat][opt]) return true;
+            for(var cat in $scope.filters){
+                for(var opt in $scope.filters[cat]){
+                    if (towel[cat] == opt && $scope.filters[cat][opt]) return true;
                 }
             }
             return match;
@@ -23,19 +23,14 @@ app.controller('allTowelController', function($scope, TowelFactory, allTowels) {
         return x;
     }
 
-
-
     $scope.filteredOptions = {};
 
-    $scope.taco = {};
+    $scope.filters = {};
 
-    $scope.print = function(){
-    	console.dir($scope.taco);
-    };
     $scope.toggle = function(category){
         $scope.filteredOptions[category] = !$scope.filteredOptions[category];
     
-        if(!$scope.filteredOptions[category]) delete $scope.taco[category];
+        if(!$scope.filteredOptions[category]) delete $scope.filters[category];
     };
 
 });
