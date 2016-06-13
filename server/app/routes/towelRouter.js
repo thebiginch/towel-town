@@ -50,11 +50,17 @@ router.get('/:towelId/reviews', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	Towel.create(req.body)
-  .then(function (createdTowel) {
-    res.status(201).json(createdTowel);
-  })
-  .catch(next);
+	if (req.user.isAdmin === true) {
+		Towel.create(req.body)
+	  .then(function (createdTowel) {
+	    res.status(201).json(createdTowel);
+	  })
+	  .catch(next);
+	} else {
+		var err = new Error('You must be an admin to create a towel');
+    err.status = 401;
+    throw err;
+	}
 });
 
 module.exports = router;
