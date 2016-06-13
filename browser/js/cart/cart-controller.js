@@ -1,6 +1,7 @@
 app.controller('myCartController',function($scope, CartFactory){
 	// Scope Variables
 	$scope.myItems = CartFactory.getCart();
+	console.log($scope.myItems);
 	$scope.totalQuant = CartFactory.totalQuant;
 	$scope.totalCost = CartFactory.totalCost;
 

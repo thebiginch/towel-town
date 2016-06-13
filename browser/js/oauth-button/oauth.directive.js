@@ -9,3 +9,10 @@ app.directive('oauthButton', function () {
       templateUrl: '/js/oauth-button/oauth-button.html'
     }
 });
+
+app.directive('oauth', function () {
+  return {
+      restrict: 'E',
+      templateUrl: '/js/oauth-button/oauth.html'
+    }
+});
