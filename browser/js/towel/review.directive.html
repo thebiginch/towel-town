@@ -1,37 +1,35 @@
-<form id="review-form">
-  <div class="form-group">
-    Add a Review:
+<form id="review-form" class="col-lg-8 col-lg-offset-1">
+  <div  class="form-group">
+    <h4 id="add-review-headline">Add User Review</h4>
   <div>
   <alert type="danger" ng-show="reviewError">
     {{ reviewError }}
   </alert>
   <div class="form-group">
-    <label for="headline">Name</label>
-    <input ng-model="review.name" type="text" placeholder="Enter Display Name">
+    <label for="headline">Name: </label>
+    <input id="name" ng-model="review.name" type="text" placeholder="Enter Display Name">
+    <button id="submit-button" type="button" ng-click="addReview(review, towel.id)" class="btn btn-primary">Submit Review</button>
   </div>
   <div class="form-group">
-    <label for="headline">Title</label>
-    <input ng-model="review.headline" type="text" placeholder="Enter Title">
+    
   </div>
   <div class="form-group">
 
-    <label for="singleSelect"> Select Rating: </label><br>
+    <label for="headline">Title: </label>
+    <input id="title" ng-model="review.headline" type="text" placeholder="Enter Title">
+
+    <label for="singleSelect"> Select Rating: </label>
     <select name="singleSelect" ng-model="review.rating">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
-    </select></br>
-
+    </select>
 
   </div>
   </div>
   <div class="form-group">
-    <label for="headline">Review</label>
-    <input ng-model="review.content" type="text" placeholder="Enter Review">
-  </div>
-  <div class="form-group">
-    <button ng-click="addReview(review, towel.id)" type="button" class="btn btn-primary">Submit Review</button>
+    <textarea ng-model="review.content" type="text" id="review-input" placeholder="Enter Review Here">
   </div>
 </form>

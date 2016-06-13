@@ -9,14 +9,14 @@
 		<div class="col-sm-offset-1 col-sm-3">
 			<div class="thumbnail"><img src="/js/towel/towel_bruh.jpg" alt="Placeholder"></div>
 			<p>{{ towel.description }}</p>
+			<h2>Price: {{ towel.price | currency }}</h2>
+			<h4 style="margin-bottom: 20px; margin-top: 20px">Rating: <span ng-if="towel.rating" ng-repeat="n in genArr(towel.rating) track by $index" class="glyphicon glyphicon-tint"></span><span ng-if="!towel.rating">N/A</span></h4>
+			<button type="button" class="btn btn-primary" ng-click="addToCart(towel)">Add To Cart</button>
+			<br>
+			<span></span>
+			<br>
 		</div>
-		<div class="col-sm-offset-1 col-sm-6">
-		<h2>Price: {{ towel.price | currency }}</h2>
-		<br>
-		<button type="button" class="btn btn-primary" ng-click="addToCart(towel)">Add To Cart</button>
-		<br>
-		<span></span>
-		<br>
+		<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-heading">Features</div>
 				<table class="table">

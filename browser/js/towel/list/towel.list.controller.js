@@ -23,9 +23,6 @@ app.controller('allTowelController', function($scope, TowelFactory, allTowels) {
 
     $scope.filterFunction = function(obj,taco){
     	
-    	
-
-    	 return true;
     };
 
 });
