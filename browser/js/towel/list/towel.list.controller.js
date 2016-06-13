@@ -1,10 +1,10 @@
-app.controller('allTowelController', function($scope, TowelFactory, allTowels) {
+app.controller('allTowelController', function($scope, TowelFactory, allTowels, AdminFactory) {
     $scope.towels = allTowels;
 
     $scope.towelOptions = {
-    	type: ['Beach','Bath','Gym','Face'],
-    	color: ['Fushia','Coral'],
-    	material: ['Pima Cotton','Bamboo','MacroFibre']
+    	type: AdminFactory.types,
+    	color: AdminFactory.colors,
+    	material: AdminFactory.materials
     };
 
     $scope.filtered = function(){

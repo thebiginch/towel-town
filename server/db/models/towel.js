@@ -28,7 +28,7 @@ module.exports = function(db) {
             type: Sequelize.INTEGER
         },
         price: {
-        	type: Sequelize.FLOAT(2),
+        	type: Sequelize.INTEGER,
         	allowNull: false
         },
         stock: {
@@ -63,12 +63,13 @@ module.exports = function(db) {
             },
             name: function() {
                 return  this.material + ' ' + this.type + ' Towel - ' + this.color;
-            }
-        },
-        instanceMethods: {
+            },
             getWetness: function() {
                 return 1 / this.absorption;
-            }
-        }
+            },
+            getPrice: function(){
+                return this.price/100;
+            } 
+        },
     });
 };
