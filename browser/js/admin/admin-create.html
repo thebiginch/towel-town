@@ -1,0 +1,60 @@
+<form id="add-towel-form">
+  <div  class="form-group">
+    <h4 id="add-towel-headline">Create New Towel</h4>
+  <div>
+
+  <div class="form-group">
+    <label for="type"> Select Type: </label>
+    <select ng-model="newTowel.type" ng-options="type for type in types"></select>
+  </div>
+
+    <div class="form-group">
+      <label for="color"> Select Color: </label>
+      <select ng-model="newTowel.color" ng-options="color for color in colors"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="material"> Select Material: </label>
+      <select ng-model="newTowel.material" ng-options="material for material in materials"></select>
+    </div>
+
+  <div class="form-group">
+    <label for="description"> Description: </label>
+    <input type="text" ng-model="newTowel.description"/>
+  </div>
+
+  <div class="form-group">
+    <label for="absorption"> Absorption: </label>
+    <input type="text" ng-model="newTowel.absorption"/>
+  </div>
+
+  <div class="form-group">
+    <label for="price"> Price: </label>
+    <input type="text" ng-model="newTowel.price"/>
+  </div>
+
+  <div class="form-group">
+    <label for="stock"> Stock: </label>
+    <input type="text" ng-model="newTowel.stock"/>
+  </div>
+
+  <div class="form-group">
+    <label for="threadcount"> Threadcount: </label>
+    <input type="text" ng-model="newTowel.threadcount"/>
+  </div>
+
+  <div class="form-group">
+    <label for="towelTech"> towelTech: </label>
+    <input type="text" ng-model="newTowel.towelTech"/>
+  </div>
+
+  <div class="form-group">
+    <label for="softness"> softness: </label>
+    <input type="text" ng-model="newTowel.softness"/>
+  </div>
+
+  <div class="form-group">
+    <button ng-click="createTowel(newTowel)" class="btn-primary">Create Towel</button>
+  </div>
+
+</form>

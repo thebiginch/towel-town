@@ -33,4 +33,12 @@ router.get('/:towelId', function(req, res, next) {
 	res.json(req.towel);
 });
 
+router.post('/', function (req, res, next) {
+	Towel.create(req.body)
+  .then(function (createdTowel) {
+    res.status(201).json(createdTowel);
+  })
+  .catch(next);
+});
+
 module.exports = router;
