@@ -45,7 +45,15 @@ router.get('/:towelId/reviews', function (req, res, next) {
     } else {
       res.json(foundReviews);
     } 
-  }) 
+  })
+  .catch(next);
+});
+
+router.post('/', function (req, res, next) {
+	Towel.create(req.body)
+  .then(function (createdTowel) {
+    res.status(201).json(createdTowel);
+  })
   .catch(next);
 });
 
