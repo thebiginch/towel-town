@@ -6,19 +6,21 @@ require('./models/order')(db);
 require('./models/reviews')(db);
 require('./models/towel')(db);
 require('./models/order_towels')(db);
-
+require('./models/orderItem')(db);
 
 var User = db.model('user');
 var Order = db.model('order');
 var Review = db.model('review');
 var Towel = db.model('towel');
 var order_towels = db.model('order_towels');
+var OrderItem = db.model('orderItem');
 
 User.hasMany(Order);
 Order.belongsTo(User);
 
-Order.belongsToMany(Towel, {through: order_towels});
-Towel.belongsToMany(Order, {through: order_towels});
+Order.hasMany(OrderItem);
+OrderItem.belongsTo(Order);
+//OrderItem.belongsTo(Towel);
 
 User.hasMany(Review, { foreignKey : 'user_id'});
 Towel.hasMany(Review);
