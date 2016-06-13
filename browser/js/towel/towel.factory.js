@@ -12,8 +12,12 @@ app.factory('TowelFactory', function($http) {
             var ratingSum = ratings.reduce(function(p,c) {
                 return p + c;
             })
-            var avgRating = Math.floor(ratingSum / towel.reviews.length);
-            towel.rating = Math.floor(avgRating);
+            var avgRating = ratingSum / towel.reviews.length;
+            var half = avgRating % 1 >= .249 ? true : false
+            towel.rating = {
+                avgRating: Math.floor(avgRating),
+                half: half
+            };
         }
         return towel;
     }
