@@ -33,4 +33,20 @@ router.get('/:towelId', function(req, res, next) {
 	res.json(req.towel);
 });
 
+router.get('/:towelId/reviews', function (req, res, next) {
+  Review.findAll({
+    where: {
+      towelId : req.towel.id
+    }
+  })
+  .then(function (foundReviews) {
+    if (!foundReviews) {
+      res.sendStatus(404);
+    } else {
+      res.json(foundReviews);
+    } 
+  }) 
+  .catch(next);
+});
+
 module.exports = router;
