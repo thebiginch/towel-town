@@ -1,20 +1,27 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <div class="input-group input-group-md">
-        <span class="input-group-addon" id="searchtype"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-        <input type="text" class="form-control" placeholder="You're a towel" ng-model="searchtype" aria-describedby="searchtype">
+    <div class="col-xs-6 col-sm-3">
+
+      <div ng-repeat='(category,options) in towelOptions'>
+        <ul ng-click="toggle(category)" class="list-group">{{category}}<span  class="caret"></span></ul>
+        <div ng-show="filteredOptions[category]">
+          <li class="list-group-item">
+            <div ng-repeat="option in options">
+              <input ng-model="filters[category][option]" value="{{option}}" type="checkbox" />{{option}}
+              </br/>
+            </div>
+          </li>
+        </div>
       </div>
-      <ul class="list-group">
-        <br>
-        <li class="list-group-item">Bath</li>
-        <li class="list-group-item">Beach</li>
-        <li class="list-group-item">Gym</li>
-        <li class="list-group-item">Taco</li>
-      </ul>
+      <br>
+      <div class="input-group input-group-md">
+        <span class="input-group-addon" id="searchtype" ng-click="print()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        <input ng-click="print()" type="text" class="form-control" placeholder="You're a towel" ng-model="searchtype" aria-describedby="searchtype">
+      </div>
+
     </div>
-    <div class="col-xs-12 col-sm-9">
-      <div class="col-xs-12 col-sm-4" ng-repeat="towel in towels | filter: { description: searchtype }">
+    <div  class="col-xs-6 col-sm-9">
+      <div class="col-xs-12 col-sm-4" ng-repeat="towel in filtered()">
         <towel the-towel="towel"></towel>
       </div>
     </div>

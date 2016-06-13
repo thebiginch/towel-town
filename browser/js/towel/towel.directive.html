@@ -7,7 +7,8 @@
 		<div class="col-md-12 col-lg-6">
 			<h4><a ui-sref="towel({towelId: theTowel.id})">{{ theTowel.name }}</a></h4>
 			<h4>{{ theTowel.price | currency }}</h4>
-			<h6>Rating: <span ng-if="theTowel.rating" ng-repeat="n in genArr(theTowel.rating.avgRating) track by $index" class="glyphicon glyphicon-tint"></span><span ng-if="towel.rating.half" class="glyphicon glyphicon-tint half"></span><span ng-if="!theTowel.rating">N/A</span></h6>
+			<h6>Rating: <towel-rating towel="theTowel"></towel-rating></h6>
+			<!-- <span ng-if="theTowel.rating" ng-repeat="n in genArr(theTowel.rating.avgRating) track by $index" class="glyphicon glyphicon-tint"></span><span ng-if="theTowel.rating.half" class="glyphicon glyphicon-tint half"></span><span ng-if="!theTowel.rating">N/A</span> -->
 		</div>
 		</div>
 		<div class="row caption">
