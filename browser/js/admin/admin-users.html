@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-striped table-hover table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Id</th>
+          <th>Email</th>
+          <th>isAdmin</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <th></th>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            {{ user.isAdmin }}
+            <button class="btn-primary" ng-show="{{ !user.isAdmin }}" ng-click="makeAdmin(user, user.id)">Make Admin</button>
+          </td>
+          <th></th>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

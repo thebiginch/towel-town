@@ -1,6 +1,21 @@
 app.factory('AdminFactory', function ($http) {
   var AdminFactory = {};
 
+  AdminFactory.getAllUsers = function () {
+    return $http.get('/api/users')
+    .then(function (res) {
+      return res.data;
+    });
+  }
+
+  AdminFactory.makeAdmin = function (user, id) {
+    user.isAdmin = true;
+    return $http.put('/api/users/' + id, user)
+    .then(function (res) {
+      return res.data;
+    });
+  }
+
   AdminFactory.types = ['Beach', 'Bath', 'Face', 'Washcloth', 'Golf', 'Gym', 'Dish', 'Hot Towel', 'Bar'];
 
   AdminFactory.materials = ['MicroFibre', 'MacroFibre', 'Egyptian Cotton', 'Terry Cloth', 'Bamboo', 'Linen', 'Silk', 'Pima Cotton', 'Baby Alpaca'];
