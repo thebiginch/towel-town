@@ -7,6 +7,8 @@
           <th>Id</th>
           <th>Email</th>
           <th>isAdmin</th>
+          <th>Delete</th>
+          <th>Password Reset</th>
           <th></th>
         </tr>
       </thead>
@@ -18,6 +20,12 @@
           <td>
             {{ user.isAdmin }}
             <button class="btn-primary" ng-show="{{ !user.isAdmin }}" ng-click="makeAdmin(user, user.id)">Make Admin</button>
+          </td>
+          <td>
+            <button ng-show="{{ !user.isAdmin }}" class="btn-danger" ng-click="deleteUser(user.id)">Delete User</button>
+          </td>
+           <td>
+            <button ng-show="{{ !user.isAdmin }}" class="btn-warning" ng-click="passwordReset(user, user.id)">Force Reset</button>
           </td>
           <th></th>
       </tbody>

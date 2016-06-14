@@ -1,19 +1,28 @@
 app.factory('AdminFactory', function ($http) {
   var AdminFactory = {};
 
+  var getData = function (res) {return res.data};
+
   AdminFactory.getAllUsers = function () {
     return $http.get('/api/users')
-    .then(function (res) {
-      return res.data;
-    });
+    .then(getData);
   }
 
   AdminFactory.makeAdmin = function (user, id) {
     user.isAdmin = true;
     return $http.put('/api/users/' + id, user)
-    .then(function (res) {
-      return res.data;
-    });
+    .then(getData);
+  }
+
+  AdminFactory.deleteUser = function (id) {
+    return $http.delete('/api/users/' + id)
+    .then(getData);
+  }
+
+  AdminFactory.passwordReset = function (user, id) {
+    user.password_reset = true;
+    return $http.put('/api/users/' + id, user)
+    .then(getData);
   }
 
   AdminFactory.types = ['Beach', 'Bath', 'Face', 'Washcloth', 'Golf', 'Gym', 'Dish', 'Hot Towel', 'Bar'];
@@ -41,9 +50,7 @@ app.factory('AdminFactory', function ($http) {
     };
 
     return $http.post('/api/towels', newTowel)
-    .then(function (res) {
-      return res.data;
-    });
+    .then(getData);
 
   }
 
