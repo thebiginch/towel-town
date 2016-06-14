@@ -28,6 +28,10 @@ module.exports = function (db) {
         },
         google_id: {
             type: Sequelize.STRING
+        },
+        password_reset: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     }, {
         instanceMethods: {

@@ -27,14 +27,30 @@ app.controller('AdminCtrl', function ($scope, AdminFactory, $state, users) {
   $scope.colors = AdminFactory.colors;
   $scope.materials = AdminFactory.materials;
 
+  var refreshState = function () {
+    $state.go($state.current, {}, {reload: true});
+  }
+
   $scope.users = users;
+
+  $scope.passwordReset = function (user, id) {
+
+    AdminFactory.passwordReset(user, id)
+    .then(refreshState);
+
+  }
 
   $scope.makeAdmin = function (user, id) {
 
     AdminFactory.makeAdmin(user, id)
-    .then(function () {
-      $state.go('admin.users');
-    });
+    .then(refreshState);
+
+  }
+
+  $scope.deleteUser = function (id) {
+
+    AdminFactory.deleteUser(id)
+    .then(refreshState);  
 
   }
 

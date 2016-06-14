@@ -57,12 +57,17 @@ router.put('/:userId', function(req, res, next) {
 });
 
 router.delete('/:userId', function(req, res, next) {
-    req.user.destroy()
+    // if (req.user.isAdmin === true) {
+        req.user.destroy()
         .then(function() {
-            // res.redirect(homepage?)?
             res.sendStatus(204);
         })
         .catch(next);
+    // } else {
+    //     var err = new Error('You must be an admin to delete a user');
+    //     err.status = 401;
+    //     throw err;
+    // }
 });
 
 router.get('/:userId/orders', function(req, res, next) {
