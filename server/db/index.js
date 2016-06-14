@@ -20,7 +20,7 @@ Order.belongsTo(User);
 
 Order.hasMany(OrderItem);
 OrderItem.belongsTo(Order);
-//OrderItem.belongsTo(Towel);
+OrderItem.belongsTo(Towel);
 
 User.hasMany(Review, { foreignKey : 'user_id'});
 Towel.hasMany(Review);

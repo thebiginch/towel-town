@@ -95,10 +95,7 @@ var seedOrders = function(){
     .then(function(){
         return seedTowels();
     })
-    .then(function(towels){
-        return seedOrders();
-    })
-     .then(function () {
+    .then(function () {
          console.log(chalk.green('Seed successful!'));
          process.kill(0);
     });
