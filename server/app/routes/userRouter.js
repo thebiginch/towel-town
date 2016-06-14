@@ -15,7 +15,7 @@ router.param('userId', function(req, res, next, id) {
             include: [Review, Order]
         })
         .then(function(user) {
-            req.user = user;
+            req.targetUser = user;
             next();
         })
         .catch(next);
@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:userId', function(req, res, next) {
-    res.json(req.user);
+    res.json(req.targetUser);
 });
 
 router.post('/', function(req, res, next) {
@@ -49,7 +49,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/:userId', function(req, res, next) {
-    req.user.update(req.body)
+    req.targetUser.update(req.body)
         .then(function(updatedUser) {
             res.json(updatedUser);
         })
@@ -57,17 +57,17 @@ router.put('/:userId', function(req, res, next) {
 });
 
 router.delete('/:userId', function(req, res, next) {
-    // if (req.user.isAdmin === true) {
-        req.user.destroy()
+    if (req.user.isAdmin === true) {
+        req.targetUser.destroy()
         .then(function() {
             res.sendStatus(204);
         })
         .catch(next);
-    // } else {
-    //     var err = new Error('You must be an admin to delete a user');
-    //     err.status = 401;
-    //     throw err;
-    // }
+    } else {
+        var err = new Error('You must be an admin to delete a user');
+        err.status = 401;
+        throw err;
+    }
 });
 
 router.get('/:userId/orders', function(req, res, next) {
