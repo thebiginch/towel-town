@@ -32,17 +32,8 @@ router.get('/:orderId', function (req, res, next) {
   })
   .catch(next);
 });
-/*
-router.post('/', function (req, res, next) {
-  Order.create(req.body)
-  .then(function (createdOrder) {
-    res.status(201).json(createdOrder);
-  })
-  .catch(next);
-});
-*/
+
 router.post('/', function(req, res, next) {
-    console.log(req.body)
     var creatingOrderItems = [];
     for (var towelId in req.body.items) {
         var qty = req.body.items[towelId].quantity;
@@ -67,7 +58,6 @@ router.post('/', function(req, res, next) {
         else res.status(206).json(order);
       })
       .tap(function(order){
-        console.log(order)
         res.status(201).json(order);
       })
       .catch(next)
