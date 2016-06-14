@@ -4,11 +4,17 @@ app.config(function ($stateProvider) {
         url: '/login',
         templateUrl: 'js/login/login.html',
         controller: 'LoginCtrl'
+    })
+
+    .state('login.reset', {
+        url:'/reset',
+        templateUrl: 'js/login/reset.html',
+        controller: 'LoginCtrl'
     });
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+app.controller('LoginCtrl', function ($scope, AuthService, AdminFactory, $state) {
 
     $scope.login = {};
     $scope.error = null;
@@ -17,8 +23,19 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
         $scope.error = null;
 
-        AuthService.login(loginInfo).then(function () {
-            $state.go('home');
+        AuthService.login(loginInfo).then(function (user) {
+            $scope.user = user;
+            $scope.passwordUpdate = AdminFactory.passwordUpdate;
+            // function(user) {
+            //     console.log('user: ', user);
+            // }
+
+            if (user.password_reset) {
+                $state.go('login.reset');
+            } else {
+                $state.go('home');
+            }
+
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
         });

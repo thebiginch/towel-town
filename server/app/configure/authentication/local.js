@@ -19,7 +19,7 @@ module.exports = function (app, db) {
                 if (!user || !user.correctPassword(password)) {
                     done(null, false);
                 } else {
-                    // Properly authenticated.
+                    // Properly authenticated
                     done(null, user);
                 }
             })

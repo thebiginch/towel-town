@@ -23,7 +23,6 @@ app.factory('SignupFactory', function ($http) {
   SignupFactory.createUser = function (newUser) {
     return $http.post('/api/users', newUser)
     .then(function (createdUser) {
-      console.log(createdUser);
       return createdUser.data;
     });
   };

@@ -1,4 +1,4 @@
-app.factory('AdminFactory', function ($http) {
+app.factory('AdminFactory', function ($http, $state) {
   var AdminFactory = {};
 
   var getData = function (res) {return res.data};
@@ -23,6 +23,15 @@ app.factory('AdminFactory', function ($http) {
     user.password_reset = true;
     return $http.put('/api/users/' + id, user)
     .then(getData);
+  }
+
+  AdminFactory.passwordUpdate = function (id, user) {
+    user.password_reset = false;
+    return $http.put('/api/users/' + id, user)
+    .then(getData)
+    .then(function() {
+      $state.go('towels');
+    });
   }
 
   AdminFactory.types = ['Beach', 'Bath', 'Face', 'Washcloth', 'Golf', 'Gym', 'Dish', 'Hot Towel', 'Bar'];
