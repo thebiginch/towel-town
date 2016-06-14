@@ -42,9 +42,10 @@ router.post('/', function (req, res, next) {
 });
 */
 router.post('/', function(req, res, next) {
+    console.log(req.body)
     var creatingOrderItems = [];
     for (var towelId in req.body.items) {
-        var qty = req.body.items[towelId];
+        var qty = req.body.items[towelId].quantity;
         creatingOrderItems.push(OrderItem.create({
             quantity: qty,
             towelId: towelId
@@ -54,13 +55,19 @@ router.post('/', function(req, res, next) {
     .then(function(orderItemsArray) {
       return Order.create({
         emailAddress: req.body.email,
-        shippingAddress: req.body.shippingAddress,
-        billingAddress: req.body.billingAddress
+        shippingAddress: req.body.address.toString(),
+        // billingAddress: req.body.billingAddress
       })
       .tap(function(order) {
         return order.setOrderItems(orderItemsArray)
       })
       .then(function(order) {
+
+        if(req.user) return order.setUser(req.user);
+        else res.status(206).json(order);
+      })
+      .tap(function(order){
+        console.log(order)
         res.status(201).json(order);
       })
       .catch(next)
