@@ -5,6 +5,13 @@ var Sequelize = require('sequelize');
 
 module.exports = function (db) {
 
+    function changePassword (user) {
+        if (user.changed('password')) {
+            user.salt = user.Model.generateSalt();
+            user.password = user.Model.encryptPassword(user.password, user.salt);
+        }
+    }
+
     db.define('user', {
         email: {
             type: Sequelize.STRING,
@@ -54,12 +61,8 @@ module.exports = function (db) {
             }
         },
         hooks: {
-            beforeValidate: function (user) {
-                if (user.changed('password')) {
-                    user.salt = user.Model.generateSalt();
-                    user.password = user.Model.encryptPassword(user.password, user.salt);
-                }
-            }
+            beforeCreate: changePassword,
+            beforeUpdate: changePassword
         }
     });
 

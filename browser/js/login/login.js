@@ -26,9 +26,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, AdminFactory, $state)
         AuthService.login(loginInfo).then(function (user) {
             $scope.user = user;
             $scope.passwordUpdate = AdminFactory.passwordUpdate;
-            // function(user) {
-            //     console.log('user: ', user);
-            // }
 
             if (user.password_reset) {
                 $state.go('login.reset');

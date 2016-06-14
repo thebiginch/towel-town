@@ -30,7 +30,7 @@ app.factory('AdminFactory', function ($http, $state) {
     return $http.put('/api/users/' + id, user)
     .then(getData)
     .then(function() {
-      $state.go('towels');
+      $state.go('allTowels');
     });
   }
 
