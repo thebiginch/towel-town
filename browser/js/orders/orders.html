@@ -1,66 +1,13 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-7">
+			<h1>Order Summary</h1>
+			<cart></cart>
+		</div>
+		<div class="col-md-5">
 		<h1>Shipping Information</h1>
 		<br>
-		<form>
-			<div class="form-group">
-				<div class="row">
-					<label for="Email" class="col-sm-3 control-label">E-mail address</label>
-					<div class="col-sm-9">
-						<input ng-model="order.email" type="email" id="Email" class="form-control" placeholder="E-mail"/>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<label for="AddressStreet1" class="col-sm-3 control-label">Street Address</label>
-					<div class="col-sm-9">
-						<input ng-model="order.address.streetline1" type="text" id="AddressStreet1" class="form-control" placeholder="Street Address Line 1"/>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<div class="col-sm-offset-3 col-sm-9">
-						<input ng-model="order.address.streetline2" type="text" id="AddressStreet2" class="form-control" placeholder="Street Address Line 2"/>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<label for="AddressCity" class="col-sm-3 control-label">City</label>
-					<div class="col-sm-9">
-						<input ng-model="order.address.city" type="text" id="AddressCity" class="form-control" placeholder="City / Town"/>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<label for="AddressState" class="col-sm-3 control-label">State</label>
-					<div class="col-sm-9">
-						<input ng-model="order.address.state" type="text" id="AddressState" class="form-control" placeholder="State / Province / Region"/>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="row">
-					<label for="AddressZip" class="col-sm-3 control-label">Zip Code</label>
-					<div class="col-sm-9">
-						<input ng-model="order.address.zip" type="text" id="AddressZip" class="form-control" placeholder="Zip / Postal Code"/>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-offset-3 col-sm-9">
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</div>
-		</form>
-		</div>
-		<div class="col-md-6">
-			<h1>Order Summary</h1>
-
+		<bill-ship-info order="order"></bill-ship-info>
 		</div>
 	</div>
 </div>

@@ -18,6 +18,11 @@ app.config(function($stateProvider) {
 			url: '/checkout-summary',
 			templateUrl: '/js/orders/orders.html',
 			controller: 'OrderController'
-	});
+	})
+
+	.state('orderSuccess', {
+		url: 'checkout/success',
+		templateUrl: '/js/orders/ordersuccess.html'
+	})
 
 });

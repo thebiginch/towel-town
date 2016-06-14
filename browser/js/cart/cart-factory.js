@@ -75,14 +75,14 @@ app.factory('CartFactory', function(localStorageService, $state, $http) {
 	}
 
 	CartFactory.submitOrder = function(cartOrder) {
-		return $http.post('/api/orders', cartOrder)
-		.then(function(order) {
+		cartOrder.items = CartFactory.getCart();
+		// return $http.post('/api/orders', cartOrder)
+		// .then(function(order) {
 
 			// DEBUGGING ONLY
-			console.log(order);
-
-			// $state.go('home');
-		});
+			console.log('Order Success: ', cartOrder);
+			$state.go('orderSuccess');
+		// });
 	}
 
 	CartFactory.getQuantity = function(towel) {
