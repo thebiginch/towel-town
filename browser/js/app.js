@@ -97,3 +97,18 @@ app.filter('propFormat', function() {
         }
     }
 });
+
+app.filter('oAuthFilter', function() {
+    return function(input) {
+        input = input.trim().toLowerCase();
+        switch(input) {
+            case 'google':
+                return 'google-plus'
+            break;
+
+            default:
+                return input;
+            break;
+        }
+    }
+});
