@@ -1,4 +1,4 @@
-app.controller('singleTowelController', function($scope, TowelFactory, theTowel, reviews, $state, Session) {
+app.controller('singleTowelController', function($scope, TowelFactory, CartFactory, theTowel, reviews, $state, Session) {
     // Model gets on view
     $scope.towel = theTowel;
     $scope.reviews = reviews;
@@ -16,5 +16,6 @@ app.controller('singleTowelController', function($scope, TowelFactory, theTowel,
         $state.go($state.current, {}, {reload: true});
       });
       
-    }
+    };
+    $scope.addToCart = CartFactory.addToCart;
 });
