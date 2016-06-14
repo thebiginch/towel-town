@@ -75,11 +75,8 @@ app.factory('CartFactory', function(localStorageService, $state, $http) {
 	}
 
 	CartFactory.submitOrder = function(cartOrder) {
-		
-		console.log("cartttttt",cartOrder);
 		cartOrder.items = CartFactory.getCart();
 		
-
 		return $http.post('/api/orders', cartOrder)
 		.then(function(){
 			CartFactory.clearCart();
@@ -88,7 +85,6 @@ app.factory('CartFactory', function(localStorageService, $state, $http) {
 		.catch(function(err){
 			console.log(err);
 		});
-	
 	}
 
 	CartFactory.getQuantity = function(towel) {
