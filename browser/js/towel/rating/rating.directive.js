@@ -1,7 +1,7 @@
 app.directive('towelRating', function(TowelFactory) {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/towel/rating.directive.html',
+		templateUrl: 'js/towel/rating/rating.directive.html',
 		scope: {
 			towel: '='
 		},
