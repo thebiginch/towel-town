@@ -30,7 +30,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
 
-                    if (user.isAdmin === true) scope.isAdmin = true;
+                    if (user) {
+                        scope.isAdmin = user.isAdmin;
+                    } else {
+                        scope.isAdmin = false;
+                    }
                 });
             };
 
