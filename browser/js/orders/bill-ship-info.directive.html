@@ -3,7 +3,7 @@
 		<div class="row">
 			<label for="Email" class="col-sm-3 control-label">E-mail address</label>
 			<div class="col-sm-9">
-				<input ng-model="order.email" type="email" id="Email" class="form-control" placeholder="E-mail"/>
+				<input ng-model="order.email" type="email" id="Email" class="form-control" placeholder="E-mail" required/>
 			</div>
 		</div>
 	</div>
@@ -11,7 +11,7 @@
 		<div class="row">
 			<label for="AddressStreet1" class="col-sm-3 control-label">Street Address</label>
 			<div class="col-sm-9">
-				<input ng-model="order.address.streetline1" type="text" id="AddressStreet1" class="form-control" placeholder="Street Address Line 1"/>
+				<input ng-model="order.address.streetline1" type="text" id="AddressStreet1" class="form-control" placeholder="Street Address Line 1" required/>
 			</div>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 		<div class="row">
 			<label for="AddressCity" class="col-sm-3 control-label">City</label>
 			<div class="col-sm-9">
-				<input ng-model="order.address.city" type="text" id="AddressCity" class="form-control" placeholder="City / Town"/>
+				<input ng-model="order.address.city" type="text" id="AddressCity" class="form-control" placeholder="City / Town" required/>
 			</div>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 		<div class="row">
 			<label for="AddressState" class="col-sm-3 control-label">State</label>
 			<div class="col-sm-9">
-				<input ng-model="order.address.state" type="text" id="AddressState" class="form-control" placeholder="State / Province / Region"/>
+				<input ng-model="order.address.state" type="text" id="AddressState" class="form-control" placeholder="State / Province / Region" required/>
 			</div>
 		</div>
 	</div>
@@ -42,13 +42,13 @@
 		<div class="row">
 			<label for="AddressZip" class="col-sm-3 control-label">Zip Code</label>
 			<div class="col-sm-9">
-				<input ng-model="order.address.zip" type="text" id="AddressZip" class="form-control" placeholder="Zip / Postal Code"/>
+				<input ng-model="order.address.zip" type="text" id="AddressZip" class="form-control" placeholder="Zip / Postal Code" required/>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-offset-3 col-sm-9">
-			<button type="submit" class="pull-right btn btn-primary" ng-click="submitOrder(order)">Submit Order</button>
+			<button type="submit" class="pull-right btn btn-primary" ng-click="submitOrder(order)" ng-disabled="!myItems" ng-valid>Submit Order</button>
 		</div>
 	</div>
 </form>

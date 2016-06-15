@@ -2,7 +2,8 @@
 	<div class="row">
 		<div class="col-md-7">
 			<h1>Order Summary</h1>
-			<cart></cart>
+			<alert type="danger" ng-show="!myItems">Your shopping cart is empty!</alert>
+			<cart ng-if="myItems"></cart>
 		</div>
 		<div class="col-md-5">
 		<h1>Shipping Information</h1>

@@ -1,11 +1,11 @@
-<div class="container" ng-if="cartEmpty">
+<div class="container" ng-if="!myItems">
 	<div class="jumbotron">
 	  <h1>Your cart is empty!</h1>
 	  <p>Please navigate to the Towels link above to browse our selection</p>
 	  <p><a class="btn btn-primary btn-lg" ui-sref="allTowels" role="button">Towels</a></p>
 	</div>
 </div>
-<div ng-if="!cartEmpty" class="container">
+<div ng-if="myItems" class="container">
 	<h1>My shopping cart</h1>
 	<cart></cart>
 	<div class="row">
