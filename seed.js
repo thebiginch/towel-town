@@ -24,7 +24,7 @@ var Towel = db.model('towel');
 var Order = db.model('order');
 var Review = db.model('review');
 
- var Promise = require('sequelize').Promise;
+var Promise = require('sequelize').Promise;
  
 var seedTowels = function () {
 
@@ -83,6 +83,16 @@ var seedTowels = function () {
 
     return Promise.all(creatingTowels);
 
+    var admin = {
+        email: 'admin@admin.taco',
+        password: 'towel',
+        isAdmin: true
+    }
+
+    var createAdmin = function(){
+        return User.create(admin)
+    }
+
 };
 
 var seedOrders = function(){
@@ -94,6 +104,9 @@ var seedOrders = function(){
  db.sync({ force: true })
     .then(function(){
         return seedTowels();
+    })
+    .then(function(){
+        return createAdmin();
     })
     .then(function () {
          console.log(chalk.green('Seed successful!'));
