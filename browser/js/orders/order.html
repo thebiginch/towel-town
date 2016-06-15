@@ -41,9 +41,9 @@
               <tbody>
                 <tr ng-repeat="taco in order.orderItems">
                   <td class="highrow">{{taco.towelId}}</td>
-                  <td class="highrow text-center">{{taco.price}}</td>
+                  <td class="highrow text-center">{{taco.price | currency}}</td>
                   <td class="highrow text-center">{{taco.quantity}}</td>
-                  <td class="highrow text-right">{{taco.quantity*taco.price}}</td>
+                  <td class="highrow text-right">{{taco.quantity*taco.price | currency }}</td>
                 </tr>
                 <tr>
                   <td class="emptyrow"></td>

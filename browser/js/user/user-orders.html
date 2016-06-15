@@ -12,14 +12,12 @@
                                 <tr>
                                     <td><strong>Order ID</strong></td>
                                     <td class="text-center"><strong>Order Date</strong></td>
-                                    <td class="text-right"><strong>Total Cost</strong></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="order in user.orders">
                                     <td class="single-order" ui-sref="profile.singleOrder({ orderId : order.id})">{{order.id}}</td>
                                     <td class="text-center">{{order.createdAt | date : 'medium' }}</td>
-                                    <td class="text-right"> N/A </td>
                                 </tr>
                             </tbody>
                         </table>

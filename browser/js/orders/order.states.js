@@ -11,4 +11,19 @@ app.config(function($stateProvider) {
 		url: 'checkout/success',
 		templateUrl: '/js/orders/ordersuccess.html'
 	})
+	.state('profile.singleOrder', {
+           url: '/order/:orderId',
+           template: '<user-order order="order"></user-order>',
+           controller: 'singleOrderCtrl',
+           resolve: {
+               theOrder: function($stateParams, OrderFactory) {
+                   return OrderFactory.fetchOne($stateParams.orderId)
+                   .then(function(order){
+                    return order;
+                   });
+               }
+           }
+       });
+
+
 });
