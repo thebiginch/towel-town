@@ -16,7 +16,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="order in user.orders">
-                                    <td class="single-order" ui-sref="profile.singleOrder({ orderId : order.id})">{{order.id}}</td>
+                                    <td class="singleorder" ui-sref="profile.singleOrder({ orderId : order.id})"><a>{{order.id}}</a></td>
                                     <td class="text-center">{{order.createdAt | date : 'medium' }}</td>
                                 </tr>
                             </tbody>
