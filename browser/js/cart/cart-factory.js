@@ -79,7 +79,6 @@ app.factory('CartFactory', function(localStorageService, $state, $http) {
 		
 		return $http.post('/api/orders', cartOrder)
 		.then(function(data){
-			console.log(data);
 			CartFactory.clearCart();
 			$state.go('orderSuccess');
 		})
