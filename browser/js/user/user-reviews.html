@@ -1,1 +1,15 @@
-<p>{{user.reviews}}</p>
+<div ng-repeat="review in user.reviews" class="row">
+<div class="col-md-11">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  <h3 class="panel-title">Review #{{ review.id }}</h3>
+	  </div>
+	  <div class="panel-body">
+	  	<h3>{{ review.headline }}</h3>
+		<h5>Rating: <span ng-if="review.rating" ng-repeat="n in genArr(review.rating) track by $index" class="glyphicon glyphicon-tint"></span><span ng-if="!review.rating">N/A</span></h5>
+		<br>
+		<p>{{ review.content }}</p>
+	  </div>
+	</div>
+	</div>
+</div>
