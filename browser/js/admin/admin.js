@@ -6,6 +6,9 @@ app.config(function ($stateProvider) {
     resolve: {
       users: function (AdminFactory) {
         return AdminFactory.getAllUsers();
+      },
+      orders: function (AdminFactory) {
+        return AdminFactory.getAllOrders();
       }
     }
   })
@@ -26,11 +29,12 @@ app.config(function ($stateProvider) {
   });
 });
 
-app.controller('AdminCtrl', function ($scope, AdminFactory, $state, users) {
+app.controller('AdminCtrl', function ($scope, AdminFactory, $state, users, orders) {
   $scope.types = AdminFactory.types;
   $scope.colors = AdminFactory.colors;
   $scope.materials = AdminFactory.materials;
   $scope.users = users;
+  $scope.orders = orders;
 
   var refreshState = function () {
     $state.go($state.current, {}, {reload: true});

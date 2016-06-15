@@ -4,7 +4,7 @@ app.factory('AdminFactory', function ($http, $state) {
   var getData = function (res) {return res.data};
 
   AdminFactory.getAllOrders = function () {
-    return $http.get()
+    return $http.get('/api/orders')
     .then(getData);
   }
 
