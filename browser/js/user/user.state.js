@@ -19,6 +19,16 @@ app.config(function($stateProvider) {
         url: '/reviews',
         templateUrl: 'js/user/user-reviews.html',
         controller: 'UserController',
+    })
+    .state('profile.singleOrder', {
+        url: '/order/:orderId',
+        template: '<user-order order="order"></user-order>',
+        controller: 'singleOrderCtrl',
+        resolve: {
+            theOrder: function($stateParams,OrderFactory){
+                return OrderFactory.fetchOne($stateParams.orderId);
+            }
+        }
     });
 
 });
