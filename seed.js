@@ -82,18 +82,15 @@ var seedTowels = function () {
     });
 
     return Promise.all(creatingTowels);
+};
 
-    var admin = {
+ var createAdmin = function(){
+        return User.create({
         email: 'admin@admin.taco',
         password: 'towel',
         isAdmin: true
-    }
-
-    var createAdmin = function(){
-        return User.create(admin)
-    }
-
-};
+    })
+}
 
 var seedOrders = function(){
     return Order.create({items: [1,2],
