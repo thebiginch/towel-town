@@ -19,6 +19,7 @@ app.config(function($stateProvider) {
         url: '/reviews',
         templateUrl: 'js/user/user-reviews.html',
         controller: 'UserController',
-    });
+    })
+    
 
 });

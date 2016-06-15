@@ -22,6 +22,7 @@ module.exports = function (db) {
             notEmpty: true,
             isEmail: true
         }
-    }
+    },
+    
   });
 };
