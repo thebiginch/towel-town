@@ -11,8 +11,6 @@
 			<p>{{ towel.description }}</p>
 			<h2>Price: {{ towel.price | currency }}</h2>
 			<h4 style="margin-bottom: 20px; margin-top: 20px">Rating: <towel-rating towel="towel"></towel-rating></h4>
-			<!-- <span ng-if="towel.rating" ng-repeat="n in genArr(towel.rating.avgRating) track by $index" class="glyphicon glyphicon-tint"></span><span ng-if="towel.rating.half" class="glyphicon glyphicon-tint half"></span><span ng-if="!towel.rating">N/A</span> -->
-			<button type="button" class="btn btn-primary" ng-click="addToCart(towel)">Add To Cart</button>
 			<br>
 			<span></span>
 			<br>
