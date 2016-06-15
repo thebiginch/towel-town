@@ -18,57 +18,38 @@ app.config(function($stateProvider) {
         templateUrl: 'js/user/user-reviews.html'
     })
     .state('profile.singleOrder', {
-        url: '/:orderId',
+        url: '/order/:orderId',
         template: '<user-order order="order"></user-order>',
-        controller: 'singleOrderCtrl'
-
-        /* function($scope, $stateParams) {
-            console.log($scope)
-            temp = temp.filter(function(o){
-                return o.id === $stateParams.orderId;
-            });
-            $scope.order = temp[0];
-        }*/
-    })
-
-});
-
-app.controller('singleOrderCtrl',function($scope, $stateParams){
-    $scope.orders = $scope.$parent.user.orders;
-    var temp = $scope.orders.filter(function(o) {
-
-        return o.id == $stateParams.orderId;
+        controller: 'singleOrderCtrl',
+        resolve: {
+            theOrder: function($stateParams,OrderFactory){
+                return OrderFactory.fetchOne($stateParams.orderId);
+            }
+        }
     });
-    console.dir(temp[0])
-    $scope.order = temp[0];
+
 });
 
-app.factory('UserFactory', function($http,Session) {
-    
-    var UserFactory = {};
+app.controller('singleOrderCtrl',function($scope, $stateParams,OrderFactory,theOrder){
+    $scope.order = theOrder[0];
+});
+
+
+app.factory('OrderFactory',function($http){
+
+    var OrderFactory = {};
 
     var getData = function(res) { return res.data };
 
-    UserFactory.fetchOne = function(id) {
-        return $http.get(`/api/users/${id}`)
+    OrderFactory.fetchOne = function(id) {
+        return $http.get(`/api/orders/${id}`)
         .then(getData);
     };
-
-    UserFactory.fetchUserOrders = function(id) {
-        return $http.get(`/api/users/${id}/orders`)
-        .then(getData);
-    };
-
-    UserFactory.fetchUserReviews = function(id) {
-        return $http.get(`/api/users/${id}/reviews`)
-        .then(getData);
-    };
-
-    return UserFactory;
+    return OrderFactory;
 });
 
 app.controller('UserController', function($scope, UserFactory,Session) {
     UserFactory.fetchOne(Session.user.id).then(function(user){
         $scope.user = user;
-    })
-})
+    });
+});
