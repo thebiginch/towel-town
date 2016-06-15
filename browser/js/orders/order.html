@@ -55,7 +55,7 @@
                   <td class="highrow"></td>
                   <td class="highrow"></td>
                   <td class="highrow text-center"><strong>Subtotal</strong></td>
-                  <td class="highrow text-right">{{ total }}</td>
+                  <td class="highrow text-right">{{ total | currency}}</td>
                 </tr>
                 <tr>
                   <td class="emptyrow"></td>
@@ -67,7 +67,7 @@
                   <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
                   <td class="emptyrow"></td>
                   <td class="emptyrow text-center"><strong>Total</strong></td>
-                  <td class="emptyrow text-right">{{ total }}</td>
+                  <td class="emptyrow text-right">{{ total | currency }}</td>
                 </tr>
               </tbody>
             </table>
