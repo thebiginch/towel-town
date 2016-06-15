@@ -9,8 +9,12 @@ var Order = db.model('order');
 var OrderItem = db.model('orderItem');
 var Towel = db.model('towel');
 var Promise = require('sequelize').Promise;
+
+
 router.get('/', function (req, res, next) {
-  Order.findAll({})
+  Order.findAll({
+    include: [OrderItem]
+  })
   .then(function (foundOrders) {
     if (!foundOrders) {
       res.sendStatus(404);
@@ -22,7 +26,12 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:orderId', function (req, res, next) {
-  Order.findById(req.params.orderId)
+  var orderId=req.params.orderId;
+
+  Order.findAll({
+    where: {id: orderId},
+    include: [OrderItem]
+  })
   .then(function (foundOrder) {
     if (!foundOrder) {
       res.sendStatus(404);
@@ -37,8 +46,11 @@ router.post('/', function(req, res, next) {
     var creatingOrderItems = [];
     for (var towelId in req.body.items) {
         var qty = req.body.items[towelId].quantity;
-        creatingOrderItems.push(OrderItem.create({
+        var price = parseInt(req.body.items[towelId].price);
+      
+       creatingOrderItems.push(OrderItem.create({
             quantity: qty,
+            price: price,
             towelId: towelId
         }))
     }
@@ -46,8 +58,7 @@ router.post('/', function(req, res, next) {
     .then(function(orderItemsArray) {
       return Order.create({
         emailAddress: req.body.email,
-        shippingAddress: req.body.address.toString(),
-        // billingAddress: req.body.billingAddress
+        shippingAddress: req.body.address.toString()
       })
       .tap(function(order) {
         return order.setOrderItems(orderItemsArray)
