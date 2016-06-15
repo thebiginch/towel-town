@@ -27,19 +27,16 @@ app.config(function($stateProvider) {
             }
         }
     });
-
 });
 
 app.controller('singleOrderCtrl',function($scope, $stateParams,OrderFactory,theOrder){
     $scope.order = theOrder[0];
 });
 
-
 app.factory('OrderFactory',function($http){
-
-    var OrderFactory = {};
-
+    
     var getData = function(res) { return res.data };
+    var OrderFactory = {};
 
     OrderFactory.fetchOne = function(id) {
         return $http.get(`/api/orders/${id}`)
