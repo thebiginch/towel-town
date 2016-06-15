@@ -8,12 +8,16 @@
           <th>Status</th>
           <th>Shipping Address</th>
           <th>Email Address</th>
-          <th>Qty.</th>
+          <!-- <th>Qty.</th> -->
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="order in orders | orderBy: 'id'">
+          <td>{{ order.id }}</td>
           <td>{{ order.status }}</td>
+          <td>{{ order.shippingAddress }}</td>
+          <td>{{ order.emailAddress }}</td>
+          
         </tr>
       </tbody>
     </table>
