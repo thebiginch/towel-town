@@ -3,6 +3,11 @@ app.factory('AdminFactory', function ($http, $state) {
 
   var getData = function (res) {return res.data};
 
+  AdminFactory.getAllOrders = function () {
+    return $http.get()
+    .then(getData);
+  }
+
   AdminFactory.getAllUsers = function () {
     return $http.get('/api/users')
     .then(getData);
